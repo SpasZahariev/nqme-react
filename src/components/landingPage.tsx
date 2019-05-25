@@ -46,6 +46,7 @@ class LandingPage extends Component {
             type="text"
             className="form-control"
             placeholder="Input 4-digit Code"
+            onChange={this.checkInputValue}
           />
         </div>
       );
@@ -56,6 +57,11 @@ class LandingPage extends Component {
         <h3>Queue up Youtube and Spotify</h3>
       </React.Fragment>
     );
+  };
+  checkInputValue = (evt: React.FormEvent<HTMLInputElement>) => {
+    if (evt.currentTarget.value.length === 4) {
+      console.log("handle logging into the room now");
+    }
   };
 }
 
