@@ -17,6 +17,15 @@ class LandingPage extends Component {
         <div className="main-caption">
           <h1 className="display-2">NQME</h1>
           <h3>Queue up Youtube and Spotify</h3>
+
+          <div className="input-group mb-3 room-input col-7 col-md-4 col-lg-3 col-xl-2">
+            <input
+              type="text"
+              className="form-control"
+              placeholder="Input 4-digit Code"
+            />
+          </div>
+
           <button className="btn btn-outline-light btn-lg m-2">
             Join Room
           </button>
