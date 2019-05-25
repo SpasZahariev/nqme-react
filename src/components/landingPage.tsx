@@ -2,6 +2,10 @@ import React, { Component } from "react";
 import "./landingPage.scss";
 
 class LandingPage extends Component {
+  state = {
+    enableInput: false
+  };
+
   render() {
     return (
       <div className="container-fluid center-div">
@@ -15,16 +19,7 @@ class LandingPage extends Component {
         </div>
 
         <div className="main-caption">
-          <h1 className="display-2">NQME</h1>
-          <h3>Queue up Youtube and Spotify</h3>
-
-          <div className="input-group mb-3 room-input col-7 col-md-4 col-lg-3 col-xl-2">
-            <input
-              type="text"
-              className="form-control"
-              placeholder="Input 4-digit Code"
-            />
-          </div>
+          {this.isShowingHeader()}
 
           <button className="btn btn-outline-light btn-lg m-2">
             Join Room
@@ -34,6 +29,26 @@ class LandingPage extends Component {
       </div>
     );
   }
+
+  isShowingHeader = () => {
+    if (this.state.enableInput) {
+      return (
+        <div className="input-group mb-3 room-input col-7 col-md-4 col-lg-3 col-xl-2">
+          <input
+            type="text"
+            className="form-control"
+            placeholder="Input 4-digit Code"
+          />
+        </div>
+      );
+    }
+    return (
+      <React.Fragment>
+        <h1 className="display-2">NQME</h1>
+        <h3>Queue up Youtube and Spotify</h3>
+      </React.Fragment>
+    );
+  };
 }
 
 export default LandingPage;
