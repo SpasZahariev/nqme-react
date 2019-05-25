@@ -21,7 +21,11 @@ class LandingPage extends Component {
         <div className="main-caption">
           {this.isShowingHeader()}
 
-          <button className="btn btn-outline-light btn-lg m-2">
+          <button
+            className="btn btn-outline-light btn-lg m-2"
+            type="button"
+            onClick={this.hideHeader}
+          >
             Join Room
           </button>
           <button className="btn btn-primary btn-lg m-2">Create Room</button>
@@ -29,6 +33,10 @@ class LandingPage extends Component {
       </div>
     );
   }
+
+  hideHeader = () => {
+    this.setState({ enableInput: true });
+  };
 
   isShowingHeader = () => {
     if (this.state.enableInput) {

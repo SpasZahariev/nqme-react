@@ -60,7 +60,24 @@
 }
 
 .room-input {
+  @extend.input-animation;
   text-align: center;
   margin: 0 auto;
   padding-top: 50px;
+  font-family: sans-serif;
+}
+
+.input-animation {
+  animation: fade-headers 1s 1 0s ease;
+}
+
+@keyframes fade-headers {
+  0% {
+    transform: rotate(0) translateY(-30%);
+    opacity: 0;
+  }
+  100% {
+    transform: rotate(0);
+    opacity: 1;
+  }
 }
