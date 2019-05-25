@@ -41,7 +41,7 @@ class LandingPage extends Component {
   isShowingHeader = () => {
     if (this.state.enableInput) {
       return (
-        <div className="input-group mb-3 room-input col-7 col-md-4 col-lg-3 col-xl-2">
+        <div className="input-group-lg room-input col-7 col-md-4 col-lg-3 col-xl-2">
           <input
             type="text"
             className="form-control"
