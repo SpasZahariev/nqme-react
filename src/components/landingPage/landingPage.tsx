@@ -1,23 +1,28 @@
 import React, { Component } from "react";
 import "./landingPage.scss";
+import { FlowerSpinner } from "react-epic-spinners";
 
-class LandingPage extends Component {
+type Props = {
+  onCreate: () => void;
+};
+
+class LandingPage extends Component<Props> {
   state = {
-    enableInput: false
+    enableInput: false,
+    isLoading: false
   };
 
   render() {
+    if (this.state.isLoading) {
+      return (
+        <div>
+          <div className="darken-background" />
+          <FlowerSpinner color="#d1c7d3" size={220} className="center-flower" />
+        </div>
+      );
+    }
     return (
       <div className="container-fluid center-div">
-        <div className="background-pane">
-          <video className="video-bg-elem" preload="auto" loop autoPlay muted>
-            <source
-              src={require("../assets/images/space.mp4")}
-              type="video/mp4"
-            />
-          </video>
-        </div>
-
         <div className="main-caption">
           {this.isShowingHeader()}
 
@@ -28,11 +33,21 @@ class LandingPage extends Component {
           >
             Join Room
           </button>
-          <button className="btn btn-primary btn-lg m-2">Create Room</button>
+          <button
+            className="btn btn-primary btn-lg m-2"
+            onClick={this.startLoading}
+          >
+            Create Room
+          </button>
         </div>
       </div>
     );
   }
+
+  startLoading = () => {
+    this.setState({ isLoading: true });
+    this.props.onCreate();
+  };
 
   hideHeader = () => {
     this.setState({ enableInput: true });
@@ -45,7 +60,7 @@ class LandingPage extends Component {
           <input
             type="text"
             className="form-control"
-            placeholder="Input 4-digit Code"
+            placeholder="Input 4-symbol Pin"
             onChange={this.checkInputValue}
           />
         </div>
@@ -60,7 +75,9 @@ class LandingPage extends Component {
   };
   checkInputValue = (evt: React.FormEvent<HTMLInputElement>) => {
     if (evt.currentTarget.value.length === 4) {
-      console.log("handle logging into the room now");
+      // axios.get(config.BACKEND_ADDRESS + "\\users").then(res => {
+      //   console.log("not parsed", res.data);
+      // });
     }
   };
 }
