@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import "./App.scss";
-import config from "./config.json";
 import {
   BrowserRouter as Router,
   Switch,
@@ -11,11 +10,13 @@ import SpaceBackground from "./components/spaceBackground";
 import LandingPage from "./components/landingPage/landingPage";
 import MasterPage from "./components/masterPage/masterPage";
 import SlavePage from "./components/slavePage/slavePage";
+import config from "./config.json";
+import axios from "axios";
 
 class App extends Component {
-  // constructor(props: Readonly<{}>) {
-  //   super(props);
-  // }
+  constructor(props: Readonly<{}>) {
+    super(props);
+  }
 
   render() {
     return (
@@ -36,6 +37,12 @@ class App extends Component {
 
   handleCreateRoom = () => {
     console.log("call the backend and create the room");
+    const mili0 = Date.now();
+    const result = axios.post(config.BACKEND_ADDRESS).then(res => {
+      const mili1 = Date.now();
+      console.log(res);
+      console.log("time for creating a room: ", mili1 - mili0, " miliseconds");
+    });
   };
 }
 
