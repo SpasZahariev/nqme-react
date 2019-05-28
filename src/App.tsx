@@ -10,6 +10,7 @@ import SpaceBackground from "./components/spaceBackground";
 import LandingPage from "./components/landingPage/landingPage";
 import MasterPage from "./components/masterPage/masterPage";
 import SlavePage from "./components/slavePage/slavePage";
+import Error from "./components/error";
 import config from "./config.json";
 import axios from "axios";
 
@@ -29,7 +30,8 @@ class App extends Component {
             component={() => <LandingPage onCreate={this.handleCreateRoom} />}
           />
           <Route path="/master/:id" component={MasterPage} />
-          <Route path="/:id" component={SlavePage} />
+          <Route path="/room/:id" component={SlavePage} />
+          <Route component={Error} />
         </Switch>
       </Router>
     );
