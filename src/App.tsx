@@ -1,11 +1,6 @@
 import React, { Component } from "react";
 import "./App.scss";
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  withRouter
-} from "react-router-dom";
+import { Router, Switch, Route } from "react-router-dom";
 import SpaceBackground from "./components/spaceBackground";
 import LandingPage from "./components/landingPage/landingPage";
 import MasterPage from "./components/masterPage/masterPage";
@@ -13,15 +8,17 @@ import SlavePage from "./components/slavePage/slavePage";
 import Error from "./components/error";
 import config from "./config.json";
 import axios from "axios";
+import history from "./components/common/history";
+import Room from "./components/common/room";
 
 class App extends Component {
-  constructor(props: Readonly<{}>) {
-    super(props);
-  }
+  state = {
+    room: {}
+  };
 
   render() {
     return (
-      <Router>
+      <Router history={history}>
         <SpaceBackground />
         <Switch>
           <Route
@@ -40,11 +37,20 @@ class App extends Component {
   handleCreateRoom = () => {
     console.log("call the backend and create the room");
     const mili0 = Date.now();
-    const result = axios.post(config.BACKEND_ADDRESS).then(res => {
+    axios.post(config.BACKEND_ADDRESS).then(res => {
       const mili1 = Date.now();
       console.log(res);
+      this.roomToState(res.data.success);
       console.log("time for creating a room: ", mili1 - mili0, " miliseconds");
+      history.push("/master/" + res.data.success.room._id);
     });
+  };
+
+  //this is suspiciously working
+  roomToState = (data: Room) => {
+    const room: Room = data;
+    console.log("lol is this working", room);
+    this.setState(room);
   };
 }
 
