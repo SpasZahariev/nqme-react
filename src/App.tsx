@@ -12,10 +12,9 @@ import history from "./components/common/history";
 import Room from "./components/common/room";
 
 class App extends Component {
-  state = {
-    room: {}
+  readonly state = {
+    room: this.roomConstructor()
   };
-
   render() {
     return (
       <Router history={history}>
@@ -26,7 +25,10 @@ class App extends Component {
             exact
             component={() => <LandingPage onCreate={this.handleCreateRoom} />}
           />
-          <Route path="/master/:id" component={MasterPage} />
+          <Route
+            path="/master/:id"
+            component={() => <MasterPage room={this.state.room} />}
+          />
           <Route path="/room/:id" component={SlavePage} />
           <Route component={Error} />
         </Switch>
@@ -52,6 +54,23 @@ class App extends Component {
     console.log("lol is this working", room);
     this.setState(room);
   };
+
+  // I want to get rid of this but I need it
+  // it just creates an object that is destined to be overwrittern anyway
+  roomConstructor(): Room {
+    return {
+      MasterCookie: "",
+      SpotifySearchToken: "",
+      YoutubeSearchToken: "",
+      _id: "",
+      blocked_members: [],
+      head: {},
+      history: [],
+      master: {},
+      queue: [],
+      users: []
+    };
+  }
 }
 
 export default App;

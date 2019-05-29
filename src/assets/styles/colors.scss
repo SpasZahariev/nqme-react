@@ -19,6 +19,10 @@ $main-green: #00647d;
 $alice-blue: #f0f8ff;
 $ash-gray: #b2beb5;
 $blood-brown: rgb(54, 41, 30);
-
+$opaque: rgba(black, 0.5);
+$dark-purple: #1f1b24;
+$dark-purple-opaque: rgba(31, 27, 36, 0.95);
+$almost-black: #282828;
+$lighter-black: #3d3d3d;
 //this color is used if no color is specified
 $default-text-color: $violet !default;
