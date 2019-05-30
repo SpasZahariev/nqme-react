@@ -1,0 +1,66 @@
+@import "../../../assets/styles/colors.scss";
+@import "../../../assets/styles/fonts.scss";
+
+.nickname-container {
+  width: 100%;
+}
+
+.nickname-header {
+  color: $almost-white;
+  font-family: $roboto-slab;
+  width: 100%;
+  border-radius: 8px 8px 0px 0px;
+  padding: 5px;
+  background-color: $almost-black;
+  display: inline-block;
+}
+
+.nickname-header h3 {
+  margin-top: 5px;
+  margin-bottom: 3px;
+  padding-left: 5px;
+  font-size: 23px;
+  font-weight: 550 !important;
+}
+
+.nickname-table {
+  color: $dark-white;
+  width: 100%;
+  padding-left: 5px;
+  padding-right: 5px;
+  padding-top: 5px;
+  padding-bottom: 1px;
+  border-radius: 0px 0px 8px 8px;
+  background-color: $middle-black;
+}
+
+.name-holder {
+  padding-left: 7px;
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.first-field {
+  margin-top: 4px;
+}
+
+// div > span,
+// h3 {
+//   margin-left: 10px;
+// }
+
+hr {
+  margin-top: 0px !important;
+  border-top: 1px solid $purple-accent !important;
+}
+
+// color: $almost-white;
+// width: 100%;
+// margin-top: 50px;
+// border-radius: 8px 8px 0px 0px;
+// background-color: $almost-black;
+// display: inline-block;
+// padding-top: 10px;
+// padding-bottom: 7px;
+// font-weight: 300;
+// text-transform: uppercase;

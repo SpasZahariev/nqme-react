@@ -5,6 +5,8 @@ import "../common/nqmeNavBar/nqmeNavBar";
 import NqmeNavBar from "../common/nqmeNavBar/nqmeNavBar";
 import YouTube from "react-youtube";
 import UserList from "../common/userList/userList";
+import SongQueue from "../common/songQueue/songQueue";
+import SearchResults from "../common/searchResults/searchResults";
 
 type Props = {
   room: Room;
@@ -36,10 +38,22 @@ class MasterPage extends Component<Props> {
           <div>{this.renderPlayer()}</div>
           <div className="container-fluid row tables-container">
             <div className="col-sm-12 col-lg-6 col-xl-3">
-              <h1>SongQueue</h1>
+              <SongQueue
+                nicknames={[
+                  "Ser Fredrick of the Polar Bear",
+                  "Mark Antonie",
+                  "doe"
+                ]}
+              />
             </div>
             <div className="col-md-12 col-xl-3">
-              <h1>SearchResults</h1>
+              <SearchResults
+                nicknames={[
+                  "Ser Fredrick of the Polar Bear",
+                  "Mark Antonie",
+                  "doe"
+                ]}
+              />
             </div>
             <div className="col-sm-12 col-lg-6 col-xl-3">
               <UserList
