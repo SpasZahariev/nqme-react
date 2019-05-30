@@ -40,10 +40,10 @@
   // border-radius: 0px 25px 0px 25px;
 }
 
-.attention-message {
-  font-family: $quicksand;
-  color: $pink;
-}
+// .attention-message {
+//   font-family: $quicksand;
+//   color: $pink;
+// }
 
 #search-div {
   // float: right;
@@ -55,6 +55,8 @@
 
 #logo-header {
   margin-top: 6px;
+  font-family: $roboto-slab;
+  font-weight: 1000;
 }
 
 #search-input:focus {
