@@ -1,16 +1,5 @@
 @import "../../assets/styles/colors.scss";
 
-.nav-container {
-  color: $almost-white;
-  width: 100%;
-  margin-top: 50px;
-  border-radius: 8px 8px 0px 0px;
-  background-color: $almost-black;
-  display: inline-block;
-  padding: 5px;
-  //   background-color: $dark-purple;
-  //   padding: 10px;
-}
 .content-container {
   color: $almost-white;
   background-color: $lighter-black;
@@ -21,6 +10,7 @@
   margin-bottom: 40px;
   border-radius: 0px 0px 8px 8px;
   display: inline-block;
+  padding-top: 10px;
 
   //   padding: 10px;
 }

@@ -1,0 +1,76 @@
+@import "../../../assets/styles/colors.scss";
+@import "../../../assets/styles/fonts.scss";
+
+.nav-container {
+  color: $almost-white;
+  width: 100%;
+  margin-top: 50px;
+  border-radius: 8px 8px 0px 0px;
+  background-color: $almost-black;
+  display: inline-block;
+  padding-top: 10px;
+  padding-bottom: 7px;
+  font-weight: 300;
+  text-transform: uppercase;
+}
+
+.nqme-row {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  // flex-wrap: wrap;
+}
+
+// should select all(immediate) children in nqme-row
+// .nqme-row * {
+//   margin-left: 5px;
+//   margin-right: 5px;
+// }
+
+#search-input {
+  border-color: $purple-accent;
+  border-top-left-radius: 25px;
+  border-bottom-left-radius: 25px;
+  // border-radius: 25px 0px 25px 0px;
+}
+
+#button-input {
+  border-top-right-radius: 25px;
+  border-bottom-right-radius: 25px;
+  // border-radius: 0px 25px 0px 25px;
+}
+
+.attention-message {
+  font-family: $quicksand;
+  color: $pink;
+}
+
+#search-div {
+  // float: right;
+  // width: 400px;
+  max-width: 70%;
+  margin-top: 2px;
+  margin-bottom: 5px;
+}
+
+#logo-header {
+  margin-top: 6px;
+}
+
+#search-input:focus {
+  // border-color: #ff0000;
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px $accent-opaque;
+}
+
+@media screen and (max-width: 750px) {
+  #logo-header {
+    display: none;
+  }
+  #search-div {
+    // float: right;
+    // width: 400px;
+    max-width: 100%;
+    margin-top: 2px;
+    margin-bottom: 5px;
+  }
+}
