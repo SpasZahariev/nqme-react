@@ -45,7 +45,7 @@ class NqmeNavBar extends Component<Props, State> {
           </div>
           <div>
             <button
-              className="btn dropdown-toggle"
+              className="btn"
               id="cogwheel"
               data-toggle="dropdown-menu"
               aria-expanded="false"
@@ -54,13 +54,27 @@ class NqmeNavBar extends Component<Props, State> {
               <FontAwesomeIcon icon={faCog} color="#d1c7d3" size="lg" />
             </button>
 
-            <div className={this.getDropDownClass()} aria-labelledby="cogwheel">
-              <a className="dropdown-item" href="#">
-                Action
-              </a>
-              <a className="dropdown-item" href="#">
-                Another action
-              </a>
+            <div
+              className={this.getDropDownClass()}
+              aria-labelledby="cogwheel"
+              id="dropdown-div"
+            >
+              <div className="custom-control custom-checkbox">
+                <input
+                  type="checkbox"
+                  className="custom-control-input"
+                  id="defaultUnchecked"
+                />
+                <label className="custom-control-label">
+                  Default unchecked
+                </label>
+              </div>
+              <input
+                type="checkbox"
+                className="custom-control-input dropdown-item"
+                id="defaultIndeterminate2"
+                checked
+              />
               <a className="dropdown-item" href="#">
                 Something else here
               </a>

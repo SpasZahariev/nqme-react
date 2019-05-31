@@ -67,9 +67,11 @@
 #cogwheel {
   font-size: 23px;
   :hover {
-    animation: rotateCog 7s infinite 0s linear;
+    animation: rotateCog 4s infinite 0s linear;
   }
   padding: 0px;
+  margin-top: 2px;
+  margin-right: 5px;
 }
 
 #cogwheel:focus {
@@ -85,6 +87,14 @@
     transform: rotate(360deg);
     transform-origin: center;
   }
+}
+
+#dropdown-div {
+  position: absolute;
+  margin-left: -200px;
+  background-color: $lighter-black;
+  border-radius: 10px;
+  z-index: 10;
 }
 
 @media screen and (max-width: 750px) {
