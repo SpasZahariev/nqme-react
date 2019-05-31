@@ -1348,6 +1348,13 @@
     "@types/history" "*"
     "@types/react" "*"
 
+"@types/react-youtube@^7.6.2":
+  version "7.6.2"
+  resolved "https://registry.yarnpkg.com/@types/react-youtube/-/react-youtube-7.6.2.tgz#7d25d696d120e3c092f63c4df240ac84246fff8a"
+  integrity sha512-8iLihxKqRYUjZZPJrWKRpq9e407MG5dn5qq+hD4/5v92pEclhN8F1DOgbNc3hzv6d0Qc0hKLQ+rRtYpCmI1qww==
+  dependencies:
+    "@types/react" "*"
+
 "@types/react@*", "@types/react@16.8.18":
   version "16.8.18"
   resolved "https://registry.yarnpkg.com/@types/react/-/react-16.8.18.tgz#fe66fb748b0b6ca9709d38b87b2d1356d960a511"
