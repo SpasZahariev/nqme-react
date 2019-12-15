@@ -39,13 +39,19 @@ class MasterPage extends Component<Props> {
           <div>{this.renderPlayer()}</div>
           <div className="container-fluid row tables-container">
             <div className="col-sm-12 col-lg-6 col-xl-3">
-              {/* <SongQueue
-                nicknames={[
-                  "Ser Fredrick of the Polar Bear",
-                  "Mark Antonie",
-                  "doe"
+              <SongQueue
+                roomCode="r2d2"
+                queue={[
+                  {
+                    name: "The Score - Born For This (Audio)",
+                    likes: 7
+                  },
+                  {
+                    name: "You Me At Six - Fast Forward (Official Audio)",
+                    likes: 2
+                  }
                 ]}
-              /> */}
+              />
             </div>
             <div className="col-md-12 col-xl-5">
               <SearchResults
