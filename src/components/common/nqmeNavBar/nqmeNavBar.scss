@@ -1,5 +1,7 @@
 @import "../../../assets/styles/colors.scss";
 @import "../../../assets/styles/fonts.scss";
+@import "../../../assets/styles/common.scss";
+
 
 .nav-container {
   color: $almost-white;
@@ -19,6 +21,10 @@
   flex-flow: row wrap;
   justify-content: space-between;
   // flex-wrap: wrap;
+}
+
+#text-4-user {
+  color: $purple-accent;
 }
 
 // should select all(immediate) children in nqme-row

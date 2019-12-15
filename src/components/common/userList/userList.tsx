@@ -9,18 +9,15 @@ const UserList: React.FC<Props> = props => {
   return (
     <div className="nickname-container">
       <div className="nickname-header">
-        <h3>Users: {props.nicknames.length + 1}</h3>
+        <h3>Number of Users: {props.nicknames.length + 1}</h3>
       </div>
       <div className="nickname-table">
+        {/* hardcoded first row for just master */}
         <div className="name-holder first-field">Host</div>
-        <hr />
         {props.nicknames.map(name => {
           return (
-            <div>
-              <div className="name-holder" key={name}>
-                {name}
-              </div>
-              <hr />
+            <div className="name-holder" key={name}>
+              {name}
             </div>
           );
         })}

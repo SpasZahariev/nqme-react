@@ -1,66 +1,75 @@
 @import "../../../assets/styles/colors.scss";
 @import "../../../assets/styles/fonts.scss";
+@import "../../../assets/styles/common.scss";
 
-.nickname-container {
+.search-result-container {
   width: 100%;
 }
 
-.nickname-header {
-  color: $almost-white;
-  font-family: $roboto-slab;
+.search-result-container-header {
   width: 100%;
   border-radius: 8px 8px 0px 0px;
   padding: 5px;
-  background-color: $almost-black;
+  background-color: $middle-black;
   display: inline-block;
 }
 
-.nickname-header h3 {
+.search-result-container-header h3 {
+  color: $almost-white;
   margin-top: 5px;
+  font-size: 23px;
   margin-bottom: 3px;
   padding-left: 5px;
-  font-size: 23px;
-  font-weight: 550 !important;
+  font-weight: 700;
 }
 
-.nickname-table {
+.search-result-table {
   color: $dark-white;
   width: 100%;
-  padding-left: 5px;
-  padding-right: 5px;
-  padding-top: 5px;
-  padding-bottom: 1px;
   border-radius: 0px 0px 8px 8px;
-  background-color: $middle-black;
+  background-color: $lighter-almost-black;
+  overflow-y: auto;
+  max-height: 500px;
 }
 
-.name-holder {
-  padding-left: 7px;
+.search-result-holder {
+  padding-left: 10px;
+  margin-top: 2px;
+  margin-bottom: 2px;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  border-radius: 5px 5px 5px 5px;
   font-size: 18px;
   font-weight: 500;
+  background-color: $lighter-black;
+
+  width: 100%;
+  display: inline-grid;
+  grid-template-columns: 50px auto 50px;
+  grid-template-rows: auto;
+  // flex-flow: row wrap;
+  // justify-content: space-between;
+
 }
 
-.first-field {
-  margin-top: 4px;
+.corporation-icon {
+  // grid-column-start: span 2;
 }
 
-// div > span,
-// h3 {
-//   margin-left: 10px;
-// }
 
-hr {
-  margin-top: 0px !important;
-  border-top: 1px solid $purple-accent !important;
+.song-name p{
+  text-align: left;
+  word-wrap: break-word;
 }
 
-// color: $almost-white;
-// width: 100%;
-// margin-top: 50px;
-// border-radius: 8px 8px 0px 0px;
-// background-color: $almost-black;
-// display: inline-block;
-// padding-top: 10px;
-// padding-bottom: 7px;
-// font-weight: 300;
-// text-transform: uppercase;
+.btn-circle {
+  width: 38px;
+  height: 38px;
+  text-align: center;
+  padding: 6px 0;
+  margin-right: 10px;
+  font-size: 13px;
+  border-radius: 20px;
+
+  // grid-column-end: span 2;
+}

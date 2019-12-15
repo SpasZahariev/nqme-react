@@ -1,5 +1,7 @@
 @import "../../../assets/styles/colors.scss";
 @import "../../../assets/styles/fonts.scss";
+@import "../../../assets/styles/common.scss";
+
 
 .nickname-container {
   width: 100%;
@@ -11,7 +13,8 @@
   width: 100%;
   border-radius: 8px 8px 0px 0px;
   padding: 5px;
-  background-color: $almost-black;
+  // background-color: $almost-black;
+  background-color: $middle-black;
   display: inline-block;
 }
 
@@ -49,10 +52,10 @@
 //   margin-left: 10px;
 // }
 
-hr {
-  margin-top: 0px !important;
-  border-top: 1px solid $purple-accent !important;
-}
+// hr {
+//   margin-top: 0px !important;
+//   border-top: 1px solid $purple-accent !important;
+// }
 
 // color: $almost-white;
 // width: 100%;

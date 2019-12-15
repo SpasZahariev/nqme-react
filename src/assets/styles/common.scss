@@ -1,0 +1,29 @@
+
+/* scrollbar width */
+::-webkit-scrollbar {
+    width: 10px;
+  }
+  
+  /*scrollbar Track */
+  ::-webkit-scrollbar-track {
+    background: $almost-black; 
+  }
+   
+  /*scrollbar Handle */
+  ::-webkit-scrollbar-thumb {
+    background: $darkest-accent; 
+  }
+  
+  /*scrollbar Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: $dark-accent; 
+  }
+
+  .btn-primary {
+    background-color: $purple-accent !important;
+    border: 1px solid $purple-accent !important;
+  }
+  .btn-primary:hover {
+    background-color: $dark-accent !important;
+    border: 1px solid $dark-accent !important;
+  }

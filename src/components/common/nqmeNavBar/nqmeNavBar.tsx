@@ -24,7 +24,9 @@ class NqmeNavBar extends Component<Props, State> {
     return (
       <div className="container-fluid nav-container">
         <div className="nqme-row">
-          <h4 id="logo-header">NQME {this.props.textForUser}</h4>
+          <h4 id="logo-header">
+            NQME <span id="text-4-user">{this.props.textForUser}</span>
+          </h4>
           <div className="input-group" id="search-div">
             <input
               type="text"
@@ -52,6 +54,7 @@ class NqmeNavBar extends Component<Props, State> {
               onClick={this.toggleDropDown}
             >
               <FontAwesomeIcon icon={faCog} color="#d1c7d3" size="lg" />
+
             </button>
 
             <div

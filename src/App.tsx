@@ -37,15 +37,18 @@ class App extends Component {
   }
 
   handleCreateRoom = () => {
-    console.log("call the backend and create the room");
-    const mili0 = Date.now();
-    axios.post(config.BACKEND_ADDRESS).then(res => {
-      const mili1 = Date.now();
-      console.log(res);
-      this.roomToState(res.data.success);
-      console.log("time for creating a room: ", mili1 - mili0, " miliseconds");
-      history.push("/master/" + res.data.success.room._id);
-    });
+    // console.log("call the backend and create the room");
+    // const mili0 = Date.now();
+    // axios.post(config.BACKEND_ADDRESS).then(res => {
+    //   const mili1 = Date.now();
+    //   console.log(res);
+    //   this.roomToState(res.data.success);
+    //   console.log("time for creating a room: ", mili1 - mili0, " miliseconds");
+
+    //   history.push("/master/" + res.data.success.room._id);
+
+    // });
+    history.push("/master/TEST");
   };
 
   //this is suspiciously working

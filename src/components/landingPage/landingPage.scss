@@ -1,4 +1,5 @@
 @import "../../assets/styles/colors.scss";
+@import "../../assets/styles/common.scss";
 
 .center-div {
   text-align: center;
@@ -21,15 +22,6 @@
   font-size: 200%;
   font-weight: 500;
   padding-bottom: 1rem;
-}
-
-.btn-primary {
-  background-color: #704060 !important;
-  border: 1px solid #704060 !important;
-}
-.btn-primary:hover {
-  background-color: #af7972 !important;
-  border: 1px solid #af7972 !important;
 }
 
 .room-input {

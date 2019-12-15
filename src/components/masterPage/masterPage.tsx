@@ -28,7 +28,8 @@ const youtubeOptions = {
 class MasterPage extends Component<Props> {
   render() {
     return (
-      <div className="main-container col-lg-12 col-xl-9">
+      // <div className="main-container col-lg-12 col-xl-9">
+      <div className="main-container col-lg-12 col-xl-11">
         <NqmeNavBar
           textForUser="Host"
           onSearchSong={this.onSearchSong}
@@ -38,29 +39,54 @@ class MasterPage extends Component<Props> {
           <div>{this.renderPlayer()}</div>
           <div className="container-fluid row tables-container">
             <div className="col-sm-12 col-lg-6 col-xl-3">
-              <SongQueue
+              {/* <SongQueue
                 nicknames={[
                   "Ser Fredrick of the Polar Bear",
                   "Mark Antonie",
                   "doe"
                 ]}
-              />
+              /> */}
             </div>
-            <div className="col-md-12 col-xl-3">
+            <div className="col-md-12 col-xl-5">
               <SearchResults
-                nicknames={[
-                  "Ser Fredrick of the Polar Bear",
-                  "Mark Antonie",
-                  "doe"
+                songs={[
+                  {
+                    link: "https://www.youtube.com/watch?v=aJ5IzGBnWAc&list=LLeXLB3ZQ7DN1FrFLA0KHKuQ&index=4&t=0s",
+                    name: "The Score - Born For This (Audio)",
+                    corporation: "Youtube"
+                  },
+                  {
+                    link: "https://www.youtube.com/watch?v=4DQ-2tDzJxw&list=LLeXLB3ZQ7DN1FrFLA0KHKuQ&index=14",
+                    name: "grandson - Thoughts and Prayers (Official Audio)",
+                    corporation: "Youtube"
+                  },
+                  {
+                    link: "https://www.youtube.com/watch?v=4DQ-2tDzJxw&list=LLeXLB3ZQ7DN1FrFLA0KHKuQ&index=14",
+                    name: "You Me At Six - Fast Forward (Official Audio)",
+                    corporation: "Youtube"
+                  },
+                  {
+                    link: "https://www.youtube.com/watch?v=4DQ-2tDzJxw&list=LLeXLB3ZQ7DN1FrFLA0KHKuQ&index=14",
+                    name: "blackbear - hot girl bummer low budget video",
+                    corporation: "Youtube"
+                  },
+                  {
+                    link: "https://www.youtube.com/watch?v=4DQ-2tDzJxw&list=LLeXLB3ZQ7DN1FrFLA0KHKuQ&index=14",
+                    name: "The Girl from Ipanema - Stan Getz & Astrud Gilberto (cover by Elise)",
+                    corporation: "Youtube"
+                  }
                 ]}
               />
             </div>
             <div className="col-sm-12 col-lg-6 col-xl-3">
               <UserList
                 nicknames={[
-                  "Ser Fredrick of the Polar Bear",
+                  "Spas",
                   "Mark Antonie",
-                  "doe"
+                  "doe",
+                  "Jane",
+                  "dog",
+                  "cat"
                 ]}
               />
             </div>
@@ -101,9 +127,9 @@ class MasterPage extends Component<Props> {
           // videoId={this.state.currentSong.url}
           videoId="3kQXKJJ0nGc"
           opts={youtubeOptions}
-          // STOP THIS LINE FOR NOW
-          // onReady={event => event.target.playVideo()}
-          // onEnd=({this._onEnd})
+        // STOP THIS LINE FOR NOW
+        // onReady={event => event.target.playVideo()}
+        // onEnd=({this._onEnd})
         />
       </div>
     );
