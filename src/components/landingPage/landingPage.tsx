@@ -4,6 +4,7 @@ import { FlowerSpinner } from "react-epic-spinners";
 
 type Props = {
   onCreate: () => void;
+  onJoin: (inputPin: String) => void;
 };
 
 class LandingPage extends Component<Props> {
@@ -27,13 +28,6 @@ class LandingPage extends Component<Props> {
           {this.isShowingHeader()}
 
           <button
-            className="btn btn-outline-light btn-lg m-2"
-            type="button"
-            onClick={this.hideHeader}
-          >
-            Join Room
-          </button>
-          <button
             className="btn btn-primary btn-lg m-2"
             onClick={this.startLoading}
           >
@@ -49,7 +43,9 @@ class LandingPage extends Component<Props> {
     this.props.onCreate();
   };
 
-  hideHeader = () => {
+  //first time join is clicked it shows the input area
+  //second time it sends you to the slave page
+  handleJoinClick = () => {
     this.setState({ enableInput: true });
   };
 
@@ -63,6 +59,7 @@ class LandingPage extends Component<Props> {
             placeholder="Input 4-symbol Pin"
             onChange={this.checkInputValue}
           />
+          <h2>OR</h2>
         </div>
       );
     }
@@ -70,11 +67,22 @@ class LandingPage extends Component<Props> {
       <React.Fragment>
         <h1 className="display-2">NQME</h1>
         <h3>Queue up Youtube and Spotify</h3>
+
+        <button
+          className="btn btn-outline-light btn-lg m-2"
+          type="button"
+          onClick={this.handleJoinClick}
+        >
+          Join Room
+          </button>
       </React.Fragment>
     );
   };
+
   checkInputValue = (evt: React.FormEvent<HTMLInputElement>) => {
     if (evt.currentTarget.value.length === 4) {
+      this.setState({ isLoading: true });
+      this.props.onJoin(evt.currentTarget.value);
       // axios.get(config.BACKEND_ADDRESS + "\\users").then(res => {
       //   console.log("not parsed", res.data);
       // });

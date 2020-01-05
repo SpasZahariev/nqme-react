@@ -23,7 +23,7 @@ class App extends Component {
           <Route
             path="/"
             exact
-            component={() => <LandingPage onCreate={this.handleCreateRoom} />}
+            component={() => <LandingPage onCreate={this.handleCreateRoom} onJoin={this.handleJoinRoom} />}
           />
           <Route
             path="/master/:id"
@@ -50,6 +50,12 @@ class App extends Component {
     // });
     history.push("/master/TEST");
   };
+
+  handleJoinRoom = (inputPin: String) => {
+    //to be changed
+    // history.push("/room/" + inputPin);
+    history.push("/room/Test");
+  }
 
   //this is suspiciously working
   roomToState = (data: Room) => {
