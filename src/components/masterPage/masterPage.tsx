@@ -8,6 +8,9 @@ import UserList from "../common/userList/userList";
 import SongQueue from "../common/songQueue/songQueue";
 import SearchResults from "../common/searchResults/searchResults";
 
+
+const SMALL_SCREEN_WIDTH = 1220;
+
 type Props = {
   room: Room;
 };
@@ -82,9 +85,10 @@ class MasterPage extends Component<Props> {
     );
   }
 
+
   arangeComponents = () => {
     // return this.smallScreenLayout();
-    return window.innerWidth < 1220 ? this.smallScreenLayout() : this.normalScreenLayout();
+    return window.innerWidth < SMALL_SCREEN_WIDTH ? this.smallScreenLayout() : this.normalScreenLayout();
   }
 
   //same but search and Song Aueue columns are swapped

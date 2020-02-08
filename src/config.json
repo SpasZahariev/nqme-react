@@ -1,3 +1,4 @@
 {
-  "BACKEND_ADDRESS": "https://intense-ocean.herokuapp.com/"
+  "BACKEND_ADDRESS": "https://intense-ocean.herokuapp.com/",
+  "LOCALHOST": "http://localhost:5000/graphql"
 }

@@ -1,11 +1,11 @@
 import React, { Component } from "react";
 import "./App.scss";
 import { Router, Switch, Route } from "react-router-dom";
-import SpaceBackground from "./components/spaceBackground";
+import SpaceBackground from "./components/common/background/spaceBackground";
 import LandingPage from "./components/landingPage/landingPage";
 import MasterPage from "./components/masterPage/masterPage";
 import SlavePage from "./components/slavePage/slavePage";
-import Error from "./components/error";
+import Error from "./components/common/errorPage/error";
 import config from "./config.json";
 import axios from "axios";
 import history from "./components/common/history";

@@ -33,6 +33,15 @@ class LandingPage extends Component<Props> {
           >
             Create Room
           </button>
+
+          <button
+            className="btn btn-outline-light btn-lg m-2"
+            type="button"
+            onClick={this.handleJoinClick}
+            disabled={this.state.enableInput}
+          >
+            Join Room
+          </button>
         </div>
       </div>
     );
@@ -56,7 +65,7 @@ class LandingPage extends Component<Props> {
           <input
             type="text"
             className="form-control"
-            placeholder="Input 4-symbol Pin"
+            placeholder="Input 4-symbols"
             onChange={this.checkInputValue}
           />
           <h2>OR</h2>
@@ -67,14 +76,6 @@ class LandingPage extends Component<Props> {
       <React.Fragment>
         <h1 className="display-2">NQME</h1>
         <h3>Queue up Youtube and Spotify</h3>
-
-        <button
-          className="btn btn-outline-light btn-lg m-2"
-          type="button"
-          onClick={this.handleJoinClick}
-        >
-          Join Room
-          </button>
       </React.Fragment>
     );
   };
