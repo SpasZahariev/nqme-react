@@ -140,7 +140,7 @@ class SlavePage extends Component<Props> {
 
         <div className="col-sm-12 col-lg-6 col-xl-3">
           <UserList
-            nicknames={[
+            usernames={[
               "Spas",
               "Mark Antonie",
               "doe",
@@ -205,7 +205,7 @@ class SlavePage extends Component<Props> {
         </div>
         <div className="col-sm-12 col-lg-6 col-xl-3">
           <UserList
-            nicknames={[
+            usernames={[
               "Spas",
               "Mark Antonie",
               "doe",

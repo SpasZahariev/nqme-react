@@ -7,7 +7,6 @@ import { faSearch, faCog } from "@fortawesome/free-solid-svg-icons";
 type Props = {
   textForUser: string;
   onSearchSong: (evt: any) => void;
-  usersInRoom: number;
 };
 
 type State = {
