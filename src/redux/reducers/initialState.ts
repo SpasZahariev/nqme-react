@@ -1,7 +1,8 @@
 export default {
   //   room: {}
-  pin: "0000",
+  pin: null,
   usernames: ["Host"],
   playlist: [],
-  isMaster: false
+  isMaster: false,
+  apiCallsInProgress: 0
 };

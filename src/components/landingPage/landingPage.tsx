@@ -1,37 +1,63 @@
-import React, { Component } from "react";
-import "./landingPage.scss";
+import React, { useState } from "react";
 import { FlowerSpinner } from "react-epic-spinners";
 import { connect } from "react-redux";
+import { Redirect } from "react-router-dom";
+import * as roomActions from "../../redux/actions/roomActions";
+import "./landingPage.scss";
 
 
 interface Props {
-  onCreate: () => void;
-  onJoin: (inputPin: String) => void;
+  pin: string;
+  isLoading: boolean;
+  loadRoom: (pin: string) => void
+  createRoom: () => void
 };
 
-const LandingPage: React.FC<Props> = () => {
-  state = {
-    enableInput: false,
-    isLoading: false
+const LandingPage: React.FC<Props> = (props) => {
+  const [enableInput, setEnableInput] = useState<boolean>(false);
+
+  const displayInputField = () => {
+    return enableInput ? (
+      <div className="input-group-lg room-input col-7 col-md-4 col-lg-3 col-xl-2">
+        <input
+          type="text"
+          className="form-control"
+          placeholder="Input 4 digits"
+          onChange={checkInputValue}
+        />
+        <h2>OR</h2>
+      </div>
+    ) : (
+        <React.Fragment>
+          <h1 className="display-2">NQME</h1>
+          <h3>Youtube and Spotify Playlist</h3>
+        </React.Fragment>
+      );
   };
 
-  render() {
-    if (this.state.isLoading) {
-      return (
-        <div>
-          <div className="darken-background" />
-          <FlowerSpinner color="#d1c7d3" size={220} className="center-flower" />
-        </div>
-      );
+  //check if 4 sumbols have been inputted yet
+  const checkInputValue = (evt: React.FormEvent<HTMLInputElement>) => {
+    if (evt.currentTarget.value.length === 4) {
+      props.loadRoom(evt.currentTarget.value);
     }
-    return (
+  };
+
+
+  return props.isLoading ? (
+    <div>
+      <div className="darken-background" />
+      <FlowerSpinner color="#d1c7d3" size={220} className="center-flower" />
+    </div>
+  ) : (
       <div className="container-fluid center-div">
+        {/* if pin exists -> redirect to the room page */}
+        {props.pin && <Redirect to={"/room/" + props.pin} />}
         <div className="main-caption">
-          {this.isShowingHeader()}
+          {displayInputField()}
 
           <button
             className="btn btn-primary btn-lg m-2"
-            onClick={this.startLoading}
+            onClick={() => props.createRoom()}
           >
             Create Room
           </button>
@@ -39,67 +65,26 @@ const LandingPage: React.FC<Props> = () => {
           <button
             className="btn btn-outline-light btn-lg m-2"
             type="button"
-            onClick={this.handleJoinClick}
-            disabled={this.state.enableInput}
+            disabled={enableInput}
+            onClick={() => setEnableInput(true)}
           >
             Join Room
           </button>
         </div>
       </div>
     );
-  }
-
-  startLoading = () => {
-    this.setState({ isLoading: true });
-    this.props.onCreate();
-  };
-
-  //first time join is clicked it shows the input area
-  //second time it sends you to the slave page
-  handleJoinClick = () => {
-    this.setState({ enableInput: true });
-  };
-
-  isShowingHeader = () => {
-    if (this.state.enableInput) {
-      return (
-        <div className="input-group-lg room-input col-7 col-md-4 col-lg-3 col-xl-2">
-          <input
-            type="text"
-            className="form-control"
-            placeholder="Input 4-symbols"
-            onChange={this.checkInputValue}
-          />
-          <h2>OR</h2>
-        </div>
-      );
-    }
-    return (
-      <React.Fragment>
-        <h1 className="display-2">NQME</h1>
-        <h3>Youtube and Spotify Playlist</h3>
-      </React.Fragment>
-    );
-  };
-
-  checkInputValue = (evt: React.FormEvent<HTMLInputElement>) => {
-    if (evt.currentTarget.value.length === 4) {
-      this.setState({ isLoading: true });
-      this.props.onJoin(evt.currentTarget.value);
-      // axios.get(config.BACKEND_ADDRESS + "\\users").then(res => {
-      //   console.log("not parsed", res.data);
-      // });
-    }
-  };
 }
 
-const mapStateToProps = () => {
-
+const mapStateToProps = (state: any) => {
+  return {
+    pin: state.pin,
+    isLoading: state.apiCallsInProgress > 0
+  }
 }
 
 const mapDispatchToProps = {
-  loadRoom: null,
-  createRoom: null,
+  loadRoom: roomActions.loadRoom,
+  createRoom: roomActions.createRoom
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(LandingPage);
