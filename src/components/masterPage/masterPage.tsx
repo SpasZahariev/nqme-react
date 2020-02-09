@@ -1,18 +1,17 @@
 import React, { Component } from "react";
-import Room from "../common/room";
 import "./masterPage.scss";
 import "../common/nqmeNavBar/nqmeNavBar";
 import NqmeNavBar from "../common/nqmeNavBar/nqmeNavBar";
 import YouTube from "react-youtube";
-import UserList from "../common/userList/userList";
-import SongQueue from "../common/songQueue/songQueue";
-import SearchResults from "../common/searchResults/searchResults";
+import UserList from "../common/userListPresenter/userListPresenter";
+import SongQueue from "../common/songQueuePresenter/songQueuePresenter";
+import SearchResults from "../common/searchResultsPresenter/searchResultsPresenter";
 
 
 const SMALL_SCREEN_WIDTH = 1220;
 
 type Props = {
-  room: Room;
+  room: any;
 };
 
 const youtubeOptions = {

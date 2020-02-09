@@ -75,7 +75,7 @@ class LandingPage extends Component<Props> {
     return (
       <React.Fragment>
         <h1 className="display-2">NQME</h1>
-        <h3>Queue up Youtube and Spotify</h3>
+        <h3>Youtube and Spotify Playlist</h3>
       </React.Fragment>
     );
   };

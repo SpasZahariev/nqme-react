@@ -25,7 +25,7 @@ const SearchResults: React.FC<Props> = props => {
         {props.songs.map(song => {
           return (
             <div className="search-result-holder" key={song.link}>
-              {song.corporation == "Youtube" ? (<FontAwesomeIcon icon={faYoutube} className="corporation-icon" color="#ff0000" size="2x" />
+              {song.corporation === "Youtube" ? (<FontAwesomeIcon icon={faYoutube} className="corporation-icon" color="#ff0000" size="2x" />
               ) : (<FontAwesomeIcon icon={faSpotify} className="corporation-icon" color="#84bd00" size="2x" />
                 )}
               <div className="song-name">

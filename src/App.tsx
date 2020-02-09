@@ -6,80 +6,40 @@ import LandingPage from "./components/landingPage/landingPage";
 import MasterPage from "./components/masterPage/masterPage";
 import SlavePage from "./components/slavePage/slavePage";
 import Error from "./components/common/errorPage/error";
-import config from "./config.json";
-import axios from "axios";
-import history from "./components/common/history";
-import Room from "./components/common/room";
+import { connect } from "react-redux";
+import PropTypes from "prop-types";
 
-class App extends Component {
-  readonly state = {
-    room: this.roomConstructor()
-  };
-  render() {
-    return (
-      <Router history={history}>
-        <SpaceBackground />
-        <Switch>
-          <Route
-            path="/"
-            exact
-            component={() => <LandingPage onCreate={this.handleCreateRoom} onJoin={this.handleJoinRoom} />}
-          />
-          <Route
-            path="/master/:id"
-            component={() => <MasterPage room={this.state.room} />}
-          />
-          <Route path="/room/:id" component={SlavePage} />
-          <Route component={Error} />
-        </Switch>
-      </Router>
-    );
-  }
 
-  handleCreateRoom = () => {
-    // console.log("call the backend and create the room");
-    // const mili0 = Date.now();
-    // axios.post(config.BACKEND_ADDRESS).then(res => {
-    //   const mili1 = Date.now();
-    //   console.log(res);
-    //   this.roomToState(res.data.success);
-    //   console.log("time for creating a room: ", mili1 - mili0, " miliseconds");
 
-    //   history.push("/master/" + res.data.success.room._id);
+interface Props {
+  isMaster: boolean;
+}
 
-    // });
-    history.push("/master/TEST");
-  };
+const App: React.FC<Props> = (props) => {
+  return (
+    <div className="container-fluid">
+      <SpaceBackground />
+      <Switch>
+        <Route exact path="/" component={LandingPage} />
+        {/* <Route path="/room/:id" component={() => props.isMaster ? <MasterPage /> : <SlavePage />} /> */}
+        <Route path="/room/:id" component={() => props.isMaster ? <p>Master</p> : <p>Slave</p>} />
+        <Route component={Error} />
+      </Switch>
+    </div>
+  );
+}
 
-  handleJoinRoom = (inputPin: String) => {
-    //to be changed
-    // history.push("/room/" + inputPin);
-    history.push("/room/Test");
-  }
+// oh cool This might not be needed if I have typescript!!!
+// App.propTypes = {
+//   isMaster: PropTypes.object.isRequired
+// }
 
-  //this is suspiciously working
-  roomToState = (data: Room) => {
-    const room: Room = data;
-    console.log("lol is this working", room);
-    this.setState(room);
-  };
 
-  // I want to get rid of this but I need it
-  // it just creates an object that is destined to be overwrittern anyway
-  roomConstructor(): Room {
-    return {
-      MasterCookie: "",
-      SpotifySearchToken: "",
-      YoutubeSearchToken: "",
-      _id: "",
-      blocked_members: [],
-      head: {},
-      history: [],
-      master: {},
-      queue: [],
-      users: []
-    };
+const mapStateToProps = (state: any) => {
+  return {
+    isMaster: state.isMaster
   }
 }
 
-export default App;
+export default connect(mapStateToProps)(App);
+
