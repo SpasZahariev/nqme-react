@@ -1,13 +1,15 @@
 import React, { Component } from "react";
 import "./landingPage.scss";
 import { FlowerSpinner } from "react-epic-spinners";
+import { connect } from "react-redux";
 
-type Props = {
+
+interface Props {
   onCreate: () => void;
   onJoin: (inputPin: String) => void;
 };
 
-class LandingPage extends Component<Props> {
+const LandingPage: React.FC<Props> = () => {
   state = {
     enableInput: false,
     isLoading: false
@@ -91,4 +93,13 @@ class LandingPage extends Component<Props> {
   };
 }
 
-export default LandingPage;
+const mapStateToProps = () => {
+
+}
+
+const mapDispatchToProps = {
+  loadRoom: null,
+  createRoom: null,
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(LandingPage);
