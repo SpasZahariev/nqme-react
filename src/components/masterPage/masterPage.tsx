@@ -3,16 +3,23 @@ import "./masterPage.scss";
 import "../common/nqmeNavBar/nqmeNavBar";
 import NqmeNavBar from "../common/nqmeNavBar/nqmeNavBar";
 import YouTube from "react-youtube";
-import UserList from "../common/userListPresenter/userListPresenter";
-import SongQueue from "../common/songQueuePresenter/songQueuePresenter";
-import SearchResults from "../common/searchResultsPresenter/searchResultsPresenter";
+import UserListPresenter from "../common/userListPresenter/userListPresenter";
+import SongQueuePresenter from "../common/songQueuePresenter/songQueuePresenter";
+import SearchResultsPresenter from "../common/searchResultsPresenter/searchResultsPresenter";
+import { connect } from "react-redux";
+import { Song } from "components/common/objectTypes/playlist";
+import { Store } from "components/common/objectTypes/store";
 
+
+
+interface Props {
+  pin: string;
+  usernames: string[];
+  playlist: Song[];
+  isLoading: boolean;
+};
 
 const SMALL_SCREEN_WIDTH = 1220;
-
-type Props = {
-  room: any;
-};
 
 const youtubeOptions = {
   height: "500",
@@ -27,7 +34,7 @@ const youtubeOptions = {
   }
 };
 
-const MasterPage: React.FC<Props> = () => {
+const MasterPage: React.FC<Props> = (props) => {
 
   const onSearchSong = (evt: any) => {
     evt.preventDefault();
@@ -68,32 +75,66 @@ const MasterPage: React.FC<Props> = () => {
     );
   }
 
+  //function that hashes strings into hex color values
+  const usernameToHex = (username: string) => {
+    let hash = 0;
+    for (var i = 0; i < username.length; i++) {
+      hash = username.charCodeAt(i) + ((hash << 5) - hash);
+    }
+    var colour = '#';
+    for (var i = 0; i < 3; i++) {
+      var value = (hash >> (i * 8)) & 0xFF;
+      colour += ('00' + value.toString(16)).substr(-2);
+    }
+    return colour;
+  }
+
   const searchResultsBlock = () => {
-    <div className="col-md-12 col-xl-5">
-      <SearchResults
-        songs={[
-        ]}
-      />
-    </div>
+    return (
+      <div className="col-md-12 col-xl-5">
+        <SearchResultsPresenter
+          songs={props.playlist.map(song => {
+            return {
+              url: song.url,
+              title: song.title,
+              company: song.company
+            }
+          })}
+        />
+      </div>
+    );
   }
 
   const songQueueBlock = () => {
-    <div className="col-sm-12 col-lg-6 col-xl-3">
-      <SongQueue
-        roomCode="r2d2"
-        queue={[
-        ]}
-      />
-    </div>
+    return (
+      <div className="col-sm-12 col-lg-6 col-xl-3">
+        <SongQueuePresenter
+          roomCode={props.pin}
+          queue={props.playlist.map(song => {
+            return {
+              title: song.title,
+              likes: song.likes,
+              hexColor: usernameToHex(song.username)
+            }
+          })}
+        />
+      </div>
+    );
   }
 
   const userListBlock = () => {
-    <div className="col-sm-12 col-lg-6 col-xl-3">
-      <UserList
-        usernames={[
-        ]}
-      />
-    </div>
+    return (
+      <div className="col-sm-12 col-lg-6 col-xl-3">
+        <UserListPresenter
+          users={props.usernames.map(username => {
+            return {
+              username,
+              hexColor: usernameToHex(username)
+            }
+          })}
+        />
+      </div>
+    );
   }
 
   const smallScreenLayout = () => {
@@ -139,5 +180,14 @@ const MasterPage: React.FC<Props> = () => {
   );
 }
 
+const mapStateToProps = (state: Store) => {
+  return {
+    pin: state.pin,
+    usernames: state.usernames,
+    playlist: state.playlist,
+    isLoading: state.apiCallsInProgress > 0
+  }
+}
 
-export default MasterPage;
+
+export default connect(mapStateToProps)(MasterPage);

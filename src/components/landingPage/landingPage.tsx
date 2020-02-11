@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
 import * as roomActions from "../../redux/actions/roomActions";
 import "./landingPage.scss";
+import { Store } from "components/common/objectTypes/store";
 
 
 interface Props {
@@ -75,7 +76,7 @@ const LandingPage: React.FC<Props> = (props) => {
     );
 }
 
-const mapStateToProps = (state: any) => {
+const mapStateToProps = (state: Store) => {
   return {
     pin: state.pin,
     isLoading: state.apiCallsInProgress > 0

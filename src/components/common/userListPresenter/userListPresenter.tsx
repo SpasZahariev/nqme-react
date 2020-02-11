@@ -1,23 +1,26 @@
 import React from "react";
-import "./userList.scss";
+import "./userListPresenter.scss";
 
 type Props = {
-  usernames: string[];
+  users: {
+    username: string;
+    hexColor: string;
+  }[];
 };
 
-const UserList: React.FC<Props> = props => {
+const UserListPresenter: React.FC<Props> = props => {
   return (
     <div className="nickname-container">
       <div className="nickname-header">
-        <h3>Number of Users: {props.usernames.length + 1}</h3>
+        <h3>Number of Users: {props.users.length}</h3>
       </div>
       <div className="nickname-table">
         {/* hardcoded first row for just master */}
         <div className="name-holder first-field">Host</div>
-        {props.usernames.map(name => {
+        {props.users.map(user => {
           return (
-            <div className="name-holder" key={name}>
-              {name}
+            <div className="name-holder" key={user.username}>
+              {user.username}
             </div>
           );
         })}
@@ -26,4 +29,4 @@ const UserList: React.FC<Props> = props => {
   );
 };
 
-export default UserList;
+export default UserListPresenter;

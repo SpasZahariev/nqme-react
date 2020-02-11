@@ -28,52 +28,54 @@ export const stubCreateRoom: Room = {
   playlist: stubPlaylist
 };
 
-export const getSongQueue = [
+export const getSongQueue = () => [
   {
-    name: "The Score - Born For This (Audio)",
-    likes: 7
+    title: "The Score - Born For This (Audio)",
+    likes: 7,
+    hexColor: "FFFFFF"
   },
   {
-    name: "You Me At Six - Fast Forward (Official Audio)",
-    likes: 2
+    title: "You Me At Six - Fast Forward (Official Audio)",
+    likes: 2,
+    hexColor: "000000"
   }
 ];
 
-export const getSearchResults = [
+export const getSearchResults = () => [
   {
-    link:
+    url:
       "https://www.youtube.com/watch?v=aJ5IzGBnWAc&list=LLeXLB3ZQ7DN1FrFLA0KHKuQ&index=4&t=0s",
-    name: "The Score - Born For This (Audio)",
-    corporation: "Youtube"
+    title: "The Score - Born For This (Audio)",
+    company: "Youtube"
   },
   {
-    link:
+    url:
       "https://www.youtube.com/watch?v=4DQ-2tDzJxw&list=LLeXLB3ZQ7DN1FrFLA0KHKuQ&index=14",
-    name: "grandson - Thoughts and Prayers (Official Audio)",
-    corporation: "Youtube"
+    title: "grandson - Thoughts and Prayers (Official Audio)",
+    company: "Youtube"
   },
   {
-    link:
+    url:
       "https://www.youtube.com/watch?v=4DQ-2tDzJxw&list=LLeXLB3ZQ7DN1FrFLA0KHKuQ&index=14",
-    name: "You Me At Six - Fast Forward (Official Audio)",
-    corporation: "Youtube"
+    title: "You Me At Six - Fast Forward (Official Audio)",
+    company: "Youtube"
   },
   {
-    link:
+    url:
       "https://www.youtube.com/watch?v=4DQ-2tDzJxw&list=LLeXLB3ZQ7DN1FrFLA0KHKuQ&index=14",
-    name: "blackbear - hot girl bummer low budget video",
-    corporation: "Youtube"
+    title: "blackbear - hot girl bummer low budget video",
+    company: "Youtube"
   },
   {
-    link:
+    url:
       "https://www.youtube.com/watch?v=4DQ-2tDzJxw&list=LLeXLB3ZQ7DN1FrFLA0KHKuQ&index=14",
-    name:
+    title:
       "The Girl from Ipanema - Stan Getz & Astrud Gilberto (cover by Elise)",
-    corporation: "Youtube"
+    company: "Youtube"
   }
 ];
 
-export const getUsernames = [
+export const getUsernames = () => [
   "Spas",
   "Mark Antonie",
   "doe",

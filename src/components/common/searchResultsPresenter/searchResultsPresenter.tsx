@@ -1,18 +1,18 @@
 import React from "react";
-import "./searchResults.scss";
+import "./searchResultsPresenter.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMeteor } from "@fortawesome/free-solid-svg-icons";
 import { faYoutube, faSpotify } from "@fortawesome/free-brands-svg-icons";
 
 type Props = {
   songs: {
-    link: string;
-    name: string;
-    corporation: string;
+    url: string;
+    title: string;
+    company: string;
   }[];
 };
 
-const SearchResults: React.FC<Props> = props => {
+const SearchResultsPresenter: React.FC<Props> = props => {
   return (
     <div className="search-result-container">
       <div className="search-result-container-header">
@@ -24,13 +24,13 @@ const SearchResults: React.FC<Props> = props => {
       <div className="search-result-table">
         {props.songs.map(song => {
           return (
-            <div className="search-result-holder" key={song.link}>
-              {song.corporation === "Youtube" ? (<FontAwesomeIcon icon={faYoutube} className="corporation-icon" color="#ff0000" size="2x" />
+            <div className="search-result-holder" key={song.url}>
+              {song.company === "Youtube" ? (<FontAwesomeIcon icon={faYoutube} className="corporation-icon" color="#ff0000" size="2x" />
               ) : (<FontAwesomeIcon icon={faSpotify} className="corporation-icon" color="#84bd00" size="2x" />
                 )}
               <div className="song-name">
                 <p>
-                  {song.name}
+                  {song.title}
                 </p>
               </div>
               <button className="btn-primary btn-circle">
@@ -44,4 +44,4 @@ const SearchResults: React.FC<Props> = props => {
   );
 };
 
-export default SearchResults;
+export default SearchResultsPresenter;

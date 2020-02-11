@@ -7,6 +7,7 @@ import Error from "./components/common/errorPage/error";
 import LandingPage from "./components/landingPage/landingPage";
 import MasterPage from "./components/masterPage/masterPage";
 import SlavePage from "./components/slavePage/slavePage";
+import { Store } from "components/common/objectTypes/store";
 
 
 interface Props {
@@ -26,7 +27,7 @@ const App: React.FC<Props> = (props) => {
   );
 }
 
-const mapStateToProps = (state: any) => {
+const mapStateToProps = (state: Store) => {
   return {
     isMaster: state.isMaster
   }

@@ -1,17 +1,18 @@
 import React from "react";
-import "./songQueue.scss";
+import "./songQueuePresenter.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeartbeat } from "@fortawesome/free-solid-svg-icons";
 
 type Props = {
   roomCode: string;
   queue: {
-    name: string;
+    title: string;
     likes: number;
+    hexColor: string;
   }[];
 };
 
-const SongQueue: React.FC<Props> = props => {
+const SongQueuePresenter: React.FC<Props> = props => {
   return (
     <div className="queue-container">
       <div className="queue-container-header">
@@ -23,10 +24,10 @@ const SongQueue: React.FC<Props> = props => {
       <div className="queue-table">
         {props.queue.map(song => {
           return (
-            <div className="queue-holder" key={song.name}>
+            <div className="queue-holder" key={song.title}>
               <div className="song-name">
                 <p>
-                  {song.name}
+                  {song.title}
                 </p>
               </div>
               <button className="btn-primary btn-beat">
@@ -43,4 +44,4 @@ const SongQueue: React.FC<Props> = props => {
   );
 };
 
-export default SongQueue;
+export default SongQueuePresenter;
