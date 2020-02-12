@@ -1,6 +1,6 @@
 import { combineReducers } from "redux";
 import pinReducer from "./pinReducer";
-import isMasterReducer from "./isMasterReducer";
+import sessionNameReducer from "./sessionNameReducer";
 import usernameReducer from "./usernameReducer";
 import playlistReducer from "./playlistReducer";
 import apiStatusReducer from "./apiStatusReducer";
@@ -9,7 +9,7 @@ const rootReducer = combineReducers({
   pin: pinReducer,
   usernames: usernameReducer,
   playlist: playlistReducer,
-  isMaster: isMasterReducer,
+  sessionName: sessionNameReducer,
   apiCallsInProgress: apiStatusReducer
 });
 

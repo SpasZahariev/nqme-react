@@ -3,6 +3,6 @@ export default {
   pin: null,
   usernames: ["Host"],
   playlist: [],
-  isMaster: false,
+  sessionName: null,
   apiCallsInProgress: 0
 };

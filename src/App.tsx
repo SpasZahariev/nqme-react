@@ -11,8 +11,10 @@ import { Store } from "components/common/objectTypes/store";
 
 
 interface Props {
-  isMaster: boolean;
+  sessionName: string;
 }
+
+const HOST: string = "Host"
 
 const App: React.FC<Props> = (props) => {
   return (
@@ -20,7 +22,7 @@ const App: React.FC<Props> = (props) => {
       <SpaceBackground />
       <Switch>
         <Route exact path="/" component={LandingPage} />
-        <Route path="/room/:id" component={() => props.isMaster ? <MasterPage /> : <SlavePage />} />
+        <Route path="/room/:id" component={() => props.sessionName == HOST ? <MasterPage /> : <SlavePage />} />
         <Route component={Error} />
       </Switch>
     </>
@@ -29,7 +31,7 @@ const App: React.FC<Props> = (props) => {
 
 const mapStateToProps = (state: Store) => {
   return {
-    isMaster: state.isMaster
+    sessionName: state.sessionName
   }
 }
 

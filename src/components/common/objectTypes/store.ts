@@ -4,6 +4,6 @@ export type Store = {
   pin: string;
   usernames: string[];
   playlist: Song[];
-  isMaster: boolean;
+  sessionName: string;
   apiCallsInProgress: number;
 };
