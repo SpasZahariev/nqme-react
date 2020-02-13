@@ -2,7 +2,7 @@ export default {
   //   room: {}
   pin: null,
   usernames: ["Host"],
-  playlist: [],
+  songs: [],
   sessionName: null,
   apiCallsInProgress: 0
 };

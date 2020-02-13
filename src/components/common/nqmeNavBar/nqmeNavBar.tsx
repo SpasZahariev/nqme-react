@@ -3,6 +3,7 @@ import "./nqmeNavBar.scss";
 import "../../../assets/styles/colors.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch, faCog } from "@fortawesome/free-solid-svg-icons";
+import { NavLink } from "react-router-dom";
 
 type Props = {
   textForUser: string;
@@ -23,9 +24,11 @@ class NqmeNavBar extends Component<Props, State> {
     return (
       <div className="container-fluid nav-container">
         <div className="nqme-row">
-          <h4 id="logo-header">
-            NQME <span id="text-4-user">{this.props.textForUser}</span>
-          </h4>
+          <NavLink to="/" activeClassName="nqme-nav-link">
+            <h4 id="logo-header">
+              NQME <span id="text-4-user">{this.props.textForUser}</span>
+            </h4>
+          </NavLink>
           <div className="input-group" id="search-div">
             <input
               type="text"

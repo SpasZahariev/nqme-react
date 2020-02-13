@@ -1,7 +1,7 @@
-import { Playlist } from "./playlist";
+import { Song } from "./song";
 
 export type Room = {
   pin: string;
   usernames: string[];
-  playlist: Playlist;
+  songs: Song[];
 };

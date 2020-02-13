@@ -1,6 +1,6 @@
-export type Playlist = {
-  songs: Song[];
-};
+// export type Playlist = {
+//   songs: Song[];
+// };
 
 export enum Brand {
   YOUTUBE = "YOUTUBE",

@@ -7,14 +7,14 @@ import UserListPresenter from "../common/userListPresenter/userListPresenter";
 import SongQueuePresenter from "../common/songQueuePresenter/songQueuePresenter";
 import SearchResultsPresenter from "../common/searchResultsPresenter/searchResultsPresenter";
 import * as api from "../../apiConnection/stubData";
-import { Song } from "components/common/objectTypes/playlist";
+import { Song } from "components/common/objectTypes/song";
 import { connect } from "react-redux";
 import { Store } from "components/common/objectTypes/store";
 
 interface Props {
   pin: string;
   usernames: string[];
-  playlist: Song[];
+  songs: Song[];
   isLoading: boolean;
 };
 
@@ -69,7 +69,7 @@ const SlavePage: React.FC<Props> = (props) => {
     return (
       <div className="col-md-12 col-xl-5">
         <SearchResultsPresenter
-          songs={props.playlist.map(song => {
+          songs={props.songs.map(song => {
             return {
               url: song.url,
               title: song.title,
@@ -86,7 +86,7 @@ const SlavePage: React.FC<Props> = (props) => {
       <div className="col-sm-12 col-lg-6 col-xl-3">
         <SongQueuePresenter
           roomCode={props.pin}
-          queue={props.playlist.map(song => {
+          queue={props.songs.map(song => {
             return {
               title: song.title,
               likes: song.likes,
@@ -160,7 +160,7 @@ const mapStateToProps = (state: Store) => {
   return {
     pin: state.pin,
     usernames: state.usernames,
-    playlist: state.playlist,
+    songs: state.songs,
     isLoading: state.apiCallsInProgress > 0
   }
 }

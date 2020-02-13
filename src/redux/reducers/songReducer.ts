@@ -4,14 +4,14 @@ import initialState from "./initialState";
 
 type Actions = { type: string; room: Room };
 
-export default function playlistReducer(
-  playlistState = initialState.playlist,
+export default function songReducer(
+  songsState = initialState.songs,
   action: Actions
 ) {
   switch (action.type) {
     case types.LOAD_ROOM_SUCCESS:
-      return action.room.playlist;
+      return action.room.songs;
     default:
-      return playlistState;
+      return songsState;
   }
 }

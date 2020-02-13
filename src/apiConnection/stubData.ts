@@ -1,31 +1,29 @@
-import { Playlist, Brand, Song } from "components/common/objectTypes/playlist";
+import { Brand, Song } from "components/common/objectTypes/song";
 import { Room } from "components/common/objectTypes/room";
 
 //temporary
-export const stubPlaylist: Playlist = {
-  songs: [
-    {
-      title: "title1",
-      url: "url1",
-      likes: 0,
-      username: "spas1",
-      company: Brand.YOUTUBE
-    },
-    {
-      title: "title2",
-      url: "url2",
-      likes: 1,
-      username: "spas2",
-      company: Brand.SPOTIFY
-    }
-  ]
-};
+export const stubSongs: Song[] = [
+  {
+    title: "title1",
+    url: "url1",
+    likes: 0,
+    username: "spas1",
+    company: Brand.YOUTUBE
+  },
+  {
+    title: "title2",
+    url: "url2",
+    likes: 1,
+    username: "spas2",
+    company: Brand.SPOTIFY
+  }
+];
 
 //temporary
 export const stubCreateRoom: Room = {
   pin: String(Math.floor(Math.random() * 10000 + 1)),
   usernames: ["Spas", "Mark Antonie", "doe", "Jane", "dog", "cat"],
-  playlist: stubPlaylist
+  songs: stubSongs
 };
 
 export const getSongQueue = () => [

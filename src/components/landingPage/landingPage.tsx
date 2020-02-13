@@ -5,6 +5,8 @@ import { Redirect } from "react-router-dom";
 import * as roomActions from "../../redux/actions/roomActions";
 import "./landingPage.scss";
 import { Store } from "components/common/objectTypes/store";
+import { withApollo } from "react-apollo";
+
 
 
 interface Props {
@@ -39,6 +41,7 @@ const LandingPage: React.FC<Props> = (props) => {
   //check if 4 sumbols have been inputted yet
   const checkInputValue = (evt: React.FormEvent<HTMLInputElement>) => {
     if (evt.currentTarget.value.length === 4) {
+      console.log("this is it boizzz!");
       props.loadRoom(evt.currentTarget.value);
     }
   };
@@ -83,9 +86,15 @@ const mapStateToProps = (state: Store) => {
   }
 }
 
-const mapDispatchToProps = {
-  loadRoom: roomActions.loadRoom,
-  createRoom: roomActions.createRoom
-}
+// const mapDispatchToProps = {
+//   loadRoom: roomActions.loadRoom,
+//   createRoom: roomActions.createRoom
+// }
 
-export default connect(mapStateToProps, mapDispatchToProps)(LandingPage);
+const mapDispatchToProps = (dispatch: any, ownProps: any) => ({
+  loadRoom: (pin: string) => dispatch(roomActions.loadRoom(ownProps.client, pin)),
+  createRoom: () => dispatch(roomActions.createRoom())
+  // onSearch: variables => dispatch(loadSearchResults(ownProps.client, variables)),
+});
+
+export default withApollo(connect(mapStateToProps, mapDispatchToProps)(LandingPage));

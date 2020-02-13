@@ -2,6 +2,22 @@
 @import "../../../assets/styles/fonts.scss";
 @import "../../../assets/styles/common.scss";
 
+.nqme-nav-link :hover {
+  color: $ash-gray;
+}
+
+a.nqme-nav-link {
+  color: $almost-white;
+}
+a,
+u {
+  color: $almost-white !important;
+  text-decoration: none !important;
+}
+a:hover {
+  color: $almost-white;
+  text-decoration: none;
+}
 
 .nav-container {
   color: $almost-white;

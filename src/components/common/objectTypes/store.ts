@@ -1,9 +1,9 @@
-import { Song } from "./playlist";
+import { Song } from "./song";
 
 export type Store = {
   pin: string;
   usernames: string[];
-  playlist: Song[];
+  songs: Song[];
   sessionName: string;
   apiCallsInProgress: number;
 };
