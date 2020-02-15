@@ -1,5 +1,4 @@
 export default {
-  //   room: {}
   pin: null,
   usernames: ["Host"],
   songs: [],

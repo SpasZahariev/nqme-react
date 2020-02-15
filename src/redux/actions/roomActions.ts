@@ -7,6 +7,7 @@ import * as usernameActions from "./usernameActions";
 import { useApolloClient, useMutation } from "@apollo/react-hooks";
 import { useQuery } from "@apollo/react-hooks";
 import * as apiQueries from "../../apiConnection/queries";
+import * as apiMutations from "../../apiConnection/mutations";
 import gql from "graphql-tag";
 // import gql from "graphql-tag";
 
@@ -16,32 +17,37 @@ import gql from "graphql-tag";
 
 const HOST: string = "Host";
 
-interface GqlResult {
+interface QueryResult {
   data: any;
   loading: any;
   error: any;
 }
+
 export function loadRoomSuccess(room: Room) {
   return { type: types.LOAD_ROOM_SUCCESS, room: room };
 }
 
-export function createRoom() {
+export function createRoom(client: any) {
   // do some thunk stuff
   //temp solution
   return function(dispatch: any) {
     dispatch(usernameActions.setSessionName(HOST));
-
-    // const [login, { data }] = useMutation(LOGIN_USER);
-
-    dispatch(loadRoomSuccess(stubData.stubCreateRoom));
+    //start api loading now
+    return client
+      .mutate({
+        mutation: apiMutations.PUT_ROOM
+      })
+      .then((result: any) => {
+        console.log("room created");
+        console.log(result);
+        dispatch(loadRoomSuccess(result.data.putRoom.room));
+      })
+      .catch((error: any) => console.log(error));
   };
 }
 
 export function loadRoom(client: any, pin: string) {
   return function(dispatch: any) {
-    dispatch(usernameActions.addUser());
-    console.log("past Thunk dispatch ", pin);
-
     // const client = useApolloClient();
 
     return client
@@ -49,10 +55,16 @@ export function loadRoom(client: any, pin: string) {
         query: apiQueries.GET_SPECIFIC_ROOM,
         variables: { pinCode: pin }
       })
-      .then((result: GqlResult) => {
+      .then((result: QueryResult) => {
         //todo remove later
         console.log(result.data.room);
-        dispatch(loadRoomSuccess(result.data.room));
+        const room = result.data.room;
+        dispatch(loadRoomSuccess(room));
+        dispatch(
+          usernameActions.setSessionName(
+            room.usernames[room.usernames.length - 1]
+          )
+        );
       })
       .catch((error: any) => console.log(error));
   };

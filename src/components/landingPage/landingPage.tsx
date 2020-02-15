@@ -93,7 +93,7 @@ const mapStateToProps = (state: Store) => {
 
 const mapDispatchToProps = (dispatch: any, ownProps: any) => ({
   loadRoom: (pin: string) => dispatch(roomActions.loadRoom(ownProps.client, pin)),
-  createRoom: () => dispatch(roomActions.createRoom())
+  createRoom: () => dispatch(roomActions.createRoom(ownProps.client))
   // onSearch: variables => dispatch(loadSearchResults(ownProps.client, variables)),
 });
 
