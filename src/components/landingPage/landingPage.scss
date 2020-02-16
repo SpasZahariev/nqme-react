@@ -1,19 +1,55 @@
 @import "../../assets/styles/colors.scss";
 @import "../../assets/styles/common.scss";
 
+//importing font 
+@import url('https://fonts.googleapis.com/css?family=Josefin+Sans&display=swap');
+
+@import url('https://fonts.googleapis.com/css?family=Barlow&display=swap');
+
+@import url('https://fonts.googleapis.com/css?family=Comfortaa&display=swap');
+
+@import url('https://fonts.googleapis.com/css?family=Righteous&display=swap');
+
 .center-div {
   text-align: center;
 }
 
 .main-caption {
-  margin: 0 auto;
-  margin-top: 350px;
+  // margin: 0 auto;
+  // margin-top: 350px;
+  // margin-top: 30%;
+  margin: 0;
+  width: 100%;
+  position: absolute;
+  top: 55%;
+  left: 50%;
+  // -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
 }
+
+// @media only screen and (max-width: 600px) {
+//   .main-caption {
+//     // margin: 0 auto;
+//     // margin-top: 350px;
+//     // margin-top: 30%;
+//     margin: 0;
+//     position: absolute;
+//     top: 55%;
+//     left: 50%;
+//     // -ms-transform: translate(-50%, -50%);
+//     transform: translate(-50%, -50%);
+//   }
+// }
+
 
 .main-caption h1 {
   color: $almost-white;
-  font-size: 500%;
-  font-weight: 300;
+  // font-family: 'Josefin Sans', sans-serif;
+  font-family: 'Barlow', sans-serif;
+  // font-family: 'Comfortaa', cursive;
+  // font-family: 'Righteous', cursive;
+  // font-size: 500%;
+  // font-weight: 300;
   text-transform: uppercase;
 }
 
@@ -26,9 +62,10 @@
 }
 
 .main-caption h3 {
+  margin-top: 20px;
   color: $almost-white;
-  font-size: 200%;
-  font-weight: 500;
+  // font-size: 200%;
+  // font-weight: 500;
   padding-bottom: 1rem;
 }
 
