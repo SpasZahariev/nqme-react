@@ -64,7 +64,7 @@ class NqmeNavBar extends Component<Props, State> {
               aria-labelledby="cogwheel"
               id="dropdown-div"
             >
-              <div className="custom-control custom-checkbox">
+              {/* <div className="custom-control custom-checkbox">
                 <input
                   type="checkbox"
                   className="custom-control-input"
@@ -82,7 +82,7 @@ class NqmeNavBar extends Component<Props, State> {
               />
               <a className="dropdown-item" href="#">
                 Something else here
-              </a>
+              </a> */}
             </div>
           </div>
         </div>

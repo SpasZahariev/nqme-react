@@ -42,12 +42,14 @@ const SlavePage: React.FC<Props> = (props) => {
   // the songs played part ensures that the player gets refreshed at the end of a song
   const renderPlayer = () => {
     return (
-      <div id="music-player">
-        <YouTube
-          videoId="3kQXKJJ0nGc"
-          opts={youtubeOptions}
-        />
-      </div>
+      <div></div>
+
+      // <div id="music-player">
+      //   <YouTube
+      //     videoId="3kQXKJJ0nGc"
+      //     opts={youtubeOptions}
+      //   />
+      // </div>
     );
   }
 
@@ -66,6 +68,7 @@ const SlavePage: React.FC<Props> = (props) => {
   }
 
   const searchResultsBlock = () => {
+    console.log("search Results");
     return (
       <div className="col-md-12 col-xl-5">
         <SearchResultsPresenter
@@ -82,6 +85,7 @@ const SlavePage: React.FC<Props> = (props) => {
   }
 
   const songQueueBlock = () => {
+    console.log("song queue block");
     return (
       <div className="col-sm-12 col-lg-6 col-xl-3">
         <SongQueuePresenter
@@ -99,6 +103,7 @@ const SlavePage: React.FC<Props> = (props) => {
   }
 
   const userListBlock = () => {
+    console.log("user list block");
     return (
       <div className="col-sm-12 col-lg-6 col-xl-3">
         <UserListPresenter
@@ -117,9 +122,9 @@ const SlavePage: React.FC<Props> = (props) => {
   const smallScreenLayout = () => {
     return (
       <>
-        {searchResultsBlock}
-        {songQueueBlock}
-        {userListBlock}
+        {searchResultsBlock()}
+        {songQueueBlock()}
+        {userListBlock()}
       </>
     );
   }
@@ -127,9 +132,9 @@ const SlavePage: React.FC<Props> = (props) => {
   const normalScreenLayout = () => {
     return (
       <>
-        {songQueueBlock}
-        {searchResultsBlock}
-        {userListBlock}
+        {songQueueBlock()}
+        {searchResultsBlock()}
+        {userListBlock()}
       </>
     );
   }
