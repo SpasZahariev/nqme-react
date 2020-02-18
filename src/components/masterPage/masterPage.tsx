@@ -140,9 +140,9 @@ const MasterPage: React.FC<Props> = (props) => {
   const smallScreenLayout = () => {
     return (
       <>
-        {searchResultsBlock}
-        {songQueueBlock}
-        {userListBlock}
+        {searchResultsBlock()}
+        {songQueueBlock()}
+        {userListBlock()}
       </>
     );
   }
@@ -150,9 +150,9 @@ const MasterPage: React.FC<Props> = (props) => {
   const normalScreenLayout = () => {
     return (
       <>
-        {songQueueBlock}
-        {searchResultsBlock}
-        {userListBlock}
+        {songQueueBlock()}
+        {searchResultsBlock()}
+        {userListBlock()}
       </>
     );
   }

@@ -46,17 +46,19 @@ export function createRoom(client: any) {
   };
 }
 
-export function loadRoom(client: any, pin: string) {
+export function loadRoom(client: any, pinCode: string) {
   return function(dispatch: any) {
     // const client = useApolloClient();
 
+    // console.log(wrappedPin);
     return client
       .query({
         query: apiQueries.GET_SPECIFIC_ROOM,
-        variables: { pinCode: pin }
+        variables: { pinCode }
       })
       .then((result: QueryResult) => {
         //todo remove later
+        console.log("here is my result", result);
         console.log(result.data.room);
         const room = result.data.room;
         dispatch(loadRoomSuccess(room));

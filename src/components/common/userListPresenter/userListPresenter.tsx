@@ -16,7 +16,7 @@ const UserListPresenter: React.FC<Props> = props => {
       </div>
       <div className="nickname-table">
         {/* hardcoded first row for just master */}
-        <div className="name-holder first-field">Host</div>
+        {/* <div className="name-holder first-field">Host</div> */}
         {props.users.map(user => {
           return (
             <div className="name-holder" key={user.username}>

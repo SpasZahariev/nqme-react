@@ -22,7 +22,7 @@ export const GET_LAUNCHES = gql`
 `;
 
 export const GET_SPECIFIC_ROOM = gql`
-  query {
+  query($pinCode: String!) {
     room(pin: $pinCode) {
       pin
       usernames

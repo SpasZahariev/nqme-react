@@ -21,7 +21,7 @@ const LandingPage: React.FC<Props> = (props) => {
 
   const displayInputField = () => {
     return enableInput ? (
-      <div className="input-group-lg room-input col-7 col-md-4 col-lg-3 col-xl-2">
+      <div className="input-group-lg room-input col-6 col-md-4 col-lg-3 col-xl-2">
         <input
           type="text"
           className="form-control"
