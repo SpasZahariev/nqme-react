@@ -89,6 +89,7 @@ const MasterPage: React.FC<Props> = (props) => {
     return colour;
   }
 
+  //TODO will need to pass the results from the function called by NavBar
   const searchResultsBlock = () => {
     return (
       <div className="col-md-12 col-xl-5">

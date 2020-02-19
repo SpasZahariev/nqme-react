@@ -15,6 +15,7 @@ interface Props {
   pin: string;
   usernames: string[];
   songs: Song[];
+  sessionName: string;
   isLoading: boolean;
 };
 
@@ -150,7 +151,7 @@ const SlavePage: React.FC<Props> = (props) => {
   return (
     <div className="main-container col-lg-12 col-xl-11">
       <NqmeNavBar
-        textForUser="Host"
+        textForUser={props.sessionName}
         onSearchSong={onSearchSong}
       />
       <div className="content-container">
@@ -166,6 +167,7 @@ const mapStateToProps = (state: Store) => {
     pin: state.pin,
     usernames: state.usernames,
     songs: state.songs,
+    sessionName: state.sessionName,
     isLoading: state.apiCallsInProgress > 0
   }
 }

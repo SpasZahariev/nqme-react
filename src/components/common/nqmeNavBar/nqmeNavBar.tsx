@@ -26,7 +26,11 @@ class NqmeNavBar extends Component<Props, State> {
         <div className="nqme-row">
           <NavLink to="/" activeClassName="nqme-nav-link">
             <h4 id="logo-header">
-              NQME <span id="text-4-user">{this.props.textForUser}</span>
+              <span id="text-4-user">
+                {/* prepend with NQME if it is the master page */}
+                {this.props.textForUser == "Host" ? <>NQME </> : <></>}
+              </span>
+              <span>{this.props.textForUser}</span>
             </h4>
           </NavLink>
           <div className="input-group" id="search-div">

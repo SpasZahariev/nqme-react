@@ -10,6 +10,7 @@ import { ApolloClient } from 'apollo-client';
 import { InMemoryCache, NormalizedCacheObject } from 'apollo-cache-inmemory';
 import { HttpLink } from 'apollo-link-http';
 import { ApolloProvider } from '@apollo/react-hooks';
+import searchSongs from "./apiConnection/searchSongs"
 
 import gql from "graphql-tag";
 
@@ -23,6 +24,8 @@ const client: ApolloClient<NormalizedCacheObject> = new ApolloClient({
     cache,
     link
 });
+
+searchSongs("two feet");
 
 // ... above is the instantiation of the client object.
 client

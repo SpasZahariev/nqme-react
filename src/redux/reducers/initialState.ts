@@ -1,7 +1,7 @@
 export default {
   pin: null,
-  usernames: ["Host"],
+  usernames: [],
   songs: [],
-  sessionName: null,
+  sessionName: "(=^-^=)",
   apiCallsInProgress: 0
 };
