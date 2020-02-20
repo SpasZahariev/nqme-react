@@ -1,14 +1,14 @@
-import React, { Component } from "react";
-import "./masterPage.scss";
-import "../common/nqmeNavBar/nqmeNavBar";
-import NqmeNavBar from "../common/nqmeNavBar/nqmeNavBar";
-import YouTube from "react-youtube";
-import UserListPresenter from "../common/userListPresenter/userListPresenter";
-import SongQueuePresenter from "../common/songQueuePresenter/songQueuePresenter";
-import SearchResultsPresenter from "../common/searchResultsPresenter/searchResultsPresenter";
-import { connect } from "react-redux";
 import { Song } from "components/common/objectTypes/song";
 import { Store } from "components/common/objectTypes/store";
+import React, { useState } from "react";
+import { connect } from "react-redux";
+import YouTube from "react-youtube";
+import "../common/nqmeNavBar/nqmeNavBar";
+import NqmeNavBar from "../common/nqmeNavBar/nqmeNavBar";
+import SearchResultsPresenter from "../common/searchResultsPresenter/searchResultsPresenter";
+import SongQueuePresenter from "../common/songQueuePresenter/songQueuePresenter";
+import UserListPresenter from "../common/userListPresenter/userListPresenter";
+import "./masterPage.scss";
 
 
 
@@ -35,11 +35,13 @@ const youtubeOptions = {
 };
 
 const MasterPage: React.FC<Props> = (props) => {
+  const [songResults, setSongResults] = useState([]);
 
   const onSearchSong = (evt: any) => {
     evt.preventDefault();
     // todo
     console.log("you serached a song!");
+    console.log(evt);
   }
 
   // the songs played part ensures that the player gets refreshed at the end of a song

@@ -71,7 +71,8 @@ a:hover {
 #search-div {
   // float: right;
   // width: 400px;
-  max-width: 70%;
+  // max-width: 70%;
+  width: 100%;
   margin-top: 2px;
   margin-bottom: 5px;
 }
@@ -120,15 +121,16 @@ a:hover {
   z-index: 10;
 }
 
-@media screen and (max-width: 750px) {
+@media screen and (max-width: 770px) {
   #logo-header {
     display: none;
   }
-  #search-div {
-    // float: right;
-    // width: 400px;
-    max-width: 90%;
-    margin-top: 2px;
-    margin-bottom: 5px;
-  }
+  // #search-div {
+  //   // float: right;
+  //   // width: 400px;
+  //   // max-width: 90%;
+  //   width: 100%;
+  //   margin-top: 2px;
+  //   margin-bottom: 5px;
+  // }
 }
