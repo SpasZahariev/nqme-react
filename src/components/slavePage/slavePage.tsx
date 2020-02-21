@@ -1,15 +1,16 @@
-import React, { Component } from "react";
+import React, { Component, useState } from "react";
 import "./slavePage.scss";
 import "../common/nqmeNavBar/nqmeNavBar";
 import NqmeNavBar from "../common/nqmeNavBar/nqmeNavBar";
 import YouTube from "react-youtube";
 import UserListPresenter from "../common/userListPresenter/userListPresenter";
 import SongQueuePresenter from "../common/songQueuePresenter/songQueuePresenter";
-import SearchResultsPresenter from "../common/searchResultsPresenter/searchResultsPresenter";
+import SearchResultsContainer from "../common/searchResultsContainer/searchResultsContainer";
 import * as api from "../../apiConnection/stubData";
 import { Song } from "components/common/objectTypes/song";
 import { connect } from "react-redux";
 import { Store } from "components/common/objectTypes/store";
+import searchSongs from "../../apiConnection/searchSongs";
 
 interface Props {
   pin: string;
@@ -34,11 +35,14 @@ const SMALL_SCREEN_WIDTH = 1220;
 // const SlavePage: React.FC<Props> = () => {
 const SlavePage: React.FC<Props> = (props) => {
 
-  const onSearchSong = (evt: any) => {
-    evt.preventDefault();
-    // todo
-    console.log("you serached a song!");
-  }
+  // const [songResultsState, setSongResultsState] = useState<Song[]>([]);
+
+  // const onSearchSong = (text: string) => {
+  //   //use the async api call
+  //   searchSongs(text)
+  //     .then((result: Song[]) => setSongResultsState([...result]))
+  //     .catch(err => console.log("error loading songs from api ", err));
+  // }
 
   // the songs played part ensures that the player gets refreshed at the end of a song
   const renderPlayer = () => {
@@ -72,15 +76,7 @@ const SlavePage: React.FC<Props> = (props) => {
     console.log("search Results");
     return (
       <div className="col-md-12 col-xl-5">
-        <SearchResultsPresenter
-          songs={props.songs.map(song => {
-            return {
-              url: song.url,
-              title: song.title,
-              company: song.company
-            }
-          })}
-        />
+        <SearchResultsContainer />
       </div>
     );
   }
@@ -150,10 +146,7 @@ const SlavePage: React.FC<Props> = (props) => {
 
   return (
     <div className="main-container col-lg-12 col-xl-11">
-      <NqmeNavBar
-        textForUser={props.sessionName}
-        onSearchSong={onSearchSong}
-      />
+      <NqmeNavBar />
       <div className="content-container">
         <div>{renderPlayer()}</div>
         {arangeComponents()}

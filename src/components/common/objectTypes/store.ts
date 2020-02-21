@@ -5,5 +5,6 @@ export type Store = {
   usernames: string[];
   songs: Song[];
   sessionName: string;
+  searchResults: Song[];
   apiCallsInProgress: number;
 };

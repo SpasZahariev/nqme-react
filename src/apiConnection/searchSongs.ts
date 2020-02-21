@@ -12,7 +12,7 @@ export default async function searchSongs(word: string) {
   let entries: Song[] = [];
 
   // youtubeSearch(word, YOUTUBE_OPTIONS, (err, results) => {
-  youtubeSearch(word, YOUTUBE_OPTIONS)
+  await youtubeSearch(word, YOUTUBE_OPTIONS)
     .then(data =>
       data.results.map(result =>
         entries.push({

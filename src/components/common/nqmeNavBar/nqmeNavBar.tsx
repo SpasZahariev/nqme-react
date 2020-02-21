@@ -1,24 +1,39 @@
-import React, { Component } from "react";
+import React, { Component, useState, ChangeEvent, FormEvent } from "react";
 import "./nqmeNavBar.scss";
 import "../../../assets/styles/colors.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch, faCog } from "@fortawesome/free-solid-svg-icons";
 import { NavLink } from "react-router-dom";
+import { connect } from "react-redux";
+import { Store } from "../objectTypes/store";
+import * as searchActions from "../../../redux/actions/searchActions"
 
 type Props = {
-  textForUser: string;
-  onSearchSong: (evt: any) => void;
+  sessionName: string;
+  onSearchSong: (word: string) => void;
 };
 
-type State = {
-  isDropped: boolean;
-};
+// type State = {
+//   isDropped: boolean;
+// };
 
 const NqmeNavBar: React.FC<Props> = (props) => {
   // constructor(props: Props) {
   //   super(props);
   //   this.state = { isDropped: false };
   // }
+
+  const [searchText, setSearchText] = useState('');
+
+  const handleChange = (evt: ChangeEvent<HTMLInputElement>) => {
+    // console.log(evt.target.value);
+    setSearchText(evt.target.value);
+  }
+  const handleSubmit = (evt: React.FormEvent) => {
+    evt.preventDefault();
+    props.onSearchSong(searchText);
+    setSearchText('');
+  }
 
   // render() {
   return (
@@ -28,12 +43,12 @@ const NqmeNavBar: React.FC<Props> = (props) => {
           <h4 id="logo-header">
             <span id="text-4-user">
               {/* prepend with NQME if it is the master page */}
-              {props.textForUser == "Host" ? <>NQME </> : <></>}
+              {props.sessionName == "Host" ? <>NQME </> : <></>}
             </span>
-            <span>{props.textForUser}</span>
+            <span>{props.sessionName}</span>
           </h4>
         </NavLink>
-        <form className="col-10 col-sm-10 col-md-5 col-lg-7">
+        <form className="col-10 col-sm-10 col-md-5 col-lg-7" onSubmit={handleSubmit}>
           <div className="input-group" id="search-div">
 
             <input
@@ -41,13 +56,15 @@ const NqmeNavBar: React.FC<Props> = (props) => {
               className="form-control"
               id="search-input"
               placeholder="Search for a Song"
+              value={searchText}
+              onChange={handleChange}
             />
             <div className="input-group-append">
               <button
                 className="btn btn-primary"
                 id="button-input"
-                type="button"
-                onClick={props.onSearchSong}
+                type="submit"
+                value="Submit"
               >
                 <FontAwesomeIcon icon={faSearch} />
               </button>
@@ -98,14 +115,14 @@ const NqmeNavBar: React.FC<Props> = (props) => {
   );
 }
 
-// toggleDropDown = () => {
-//   this.setState({ isDropped: !this.state.isDropped });
-// };
+const mapStateToProps = (state: Store) => {
+  return {
+    sessionName: state.sessionName
+  }
+}
 
-// getDropDownClass = () => {
-//   // return `dropdown-menu${this.state.isDropped ? " show" : ""}`;
-//   return this.state.isDropped ? "dropdown-menushow" : "dropdown-menu";
-// };
-// }
+const mapDispatchToProps = {
+  onSearchSong: searchActions.searchForSongs
+}
 
-export default NqmeNavBar;
+export default connect(mapStateToProps, mapDispatchToProps)(NqmeNavBar);

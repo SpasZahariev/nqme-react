@@ -5,10 +5,11 @@ import { connect } from "react-redux";
 import YouTube from "react-youtube";
 import "../common/nqmeNavBar/nqmeNavBar";
 import NqmeNavBar from "../common/nqmeNavBar/nqmeNavBar";
-import SearchResultsPresenter from "../common/searchResultsPresenter/searchResultsPresenter";
+import SearchResultsContainer from "../common/searchResultsContainer/searchResultsContainer";
 import SongQueuePresenter from "../common/songQueuePresenter/songQueuePresenter";
 import UserListPresenter from "../common/userListPresenter/userListPresenter";
 import "./masterPage.scss";
+import searchSongs from "apiConnection/searchSongs";
 
 
 
@@ -35,14 +36,18 @@ const youtubeOptions = {
 };
 
 const MasterPage: React.FC<Props> = (props) => {
-  const [songResults, setSongResults] = useState([]);
+  // const [songResultsState, setSongResultsState] = useState<Song[]>([]);
 
-  const onSearchSong = (evt: any) => {
-    evt.preventDefault();
-    // todo
-    console.log("you serached a song!");
-    console.log(evt);
-  }
+  // const onSearchSong = (text: string) => {
+  //   //use the async api call
+  //   searchSongs(text)
+  //     .then((result: Song[]) => {
+  //       console.log("just the results ", result);
+  //       setSongResultsState(result)
+  //       console.log("song results State", songResultsState);
+  //     })
+  //     .catch(err => console.log("error loading songs from api ", err));
+  // }
 
   // the songs played part ensures that the player gets refreshed at the end of a song
   const renderPlayer = () => {
@@ -95,15 +100,7 @@ const MasterPage: React.FC<Props> = (props) => {
   const searchResultsBlock = () => {
     return (
       <div className="col-md-12 col-xl-5">
-        <SearchResultsPresenter
-          songs={props.songs.map(song => {
-            return {
-              url: song.url,
-              title: song.title,
-              company: song.company
-            }
-          })}
-        />
+        <SearchResultsContainer />
       </div>
     );
   }
@@ -171,10 +168,7 @@ const MasterPage: React.FC<Props> = (props) => {
 
   return (
     <div className="main-container col-lg-12 col-xl-11">
-      <NqmeNavBar
-        textForUser="Host"
-        onSearchSong={onSearchSong}
-      />
+      <NqmeNavBar />
       <div className="content-container">
         <div>{renderPlayer()}</div>
         {arangeComponents()}

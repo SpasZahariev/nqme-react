@@ -3,5 +3,6 @@ export default {
   usernames: [],
   songs: [],
   sessionName: "(=^-^=)",
+  searchResults: [],
   apiCallsInProgress: 0
 };
