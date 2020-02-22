@@ -6,7 +6,8 @@ import { Song } from "components/common/objectTypes/song";
 type Actions =
   | { type: "LOAD_ROOM_SUCCESS"; room: Room }
   | { type: "ADD_SONG_OPTIMISTIC"; song: Song }
-  | { type: "LIKE_SONG_OPTIMISTIC"; title: string };
+  | { type: "LIKE_SONG_OPTIMISTIC"; title: string }
+  | { type: "DEQUEUE_SONG_OPTIMISTIC" };
 
 export default function songReducer(
   songsState: Song[] = initialState.songs,
@@ -27,6 +28,8 @@ export default function songReducer(
             : song;
         })
         .sort((songA, songB) => songB.likes - songA.likes);
+    case types.DEQUEUE_SONG_OPTIMISTIC:
+      return songsState.slice(1);
     default:
       return songsState;
   }

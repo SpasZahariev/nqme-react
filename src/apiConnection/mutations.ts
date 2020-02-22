@@ -54,3 +54,13 @@ export const LIKE_SONG = gql`
     }
   }
 `;
+
+export const DEQUEUE_SONG = gql`
+  mutation($pin: String!) {
+    dequeueSong(pin: $pin) {
+      songs {
+        url
+      }
+    }
+  }
+`;

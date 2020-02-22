@@ -36,6 +36,10 @@ export function likeSongOptimistic(title: string) {
   return { type: types.LIKE_SONG_OPTIMISTIC, title };
 }
 
+export function dequeueSongOptimistic() {
+  return { type: types.DEQUEUE_SONG_OPTIMISTIC };
+}
+
 export function createRoom(client: any) {
   // do some thunk stuff
   return function(dispatch: any) {
@@ -106,6 +110,16 @@ export function likeSong(client: any, pin: string, title: string) {
     return client.mutate({
       mutation: apiMutations.LIKE_SONG,
       variables: { pin, title }
+    });
+  };
+}
+
+export function dequeueSong(client: any, pin: string) {
+  return function(dispatch: any) {
+    dispatch(dequeueSongOptimistic());
+    return client.mutate({
+      mutation: apiMutations.DEQUEUE_SONG,
+      variables: { pin }
     });
   };
 }
