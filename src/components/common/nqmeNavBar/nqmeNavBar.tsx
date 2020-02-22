@@ -1,12 +1,11 @@
-import React, { Component, useState, ChangeEvent, FormEvent } from "react";
-import "./nqmeNavBar.scss";
-import "../../../assets/styles/colors.scss";
+import { faCog, faSearch } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSearch, faCog } from "@fortawesome/free-solid-svg-icons";
-import { NavLink, Link } from "react-router-dom";
+import React, { ChangeEvent, useState } from "react";
 import { connect } from "react-redux";
+import "../../../assets/styles/colors.scss";
+import * as searchActions from "../../../redux/actions/searchActions";
 import { Store } from "../objectTypes/store";
-import * as searchActions from "../../../redux/actions/searchActions"
+import "./nqmeNavBar.scss";
 
 type Props = {
   sessionName: string;
@@ -44,7 +43,7 @@ const NqmeNavBar: React.FC<Props> = (props) => {
           <h4 id="logo-header">
             <span id="text-4-user">
               {/* prepend with NQME if it is the master page */}
-              {props.sessionName == "Host" ? <>NQME </> : <></>}
+              {props.sessionName === "Host" ? <>NQME </> : <></>}
             </span>
             <span>{props.sessionName}</span>
           </h4>

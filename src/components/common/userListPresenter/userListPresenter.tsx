@@ -1,26 +1,24 @@
 import React from "react";
 import "./userListPresenter.scss";
+import { usernameToHex } from "../../common/utlilityFunctions/usernameToHex"
 
 type Props = {
-  users: {
-    username: string;
-    hexColor: string;
-  }[];
+  usernames: string[];
 };
 
 const UserListPresenter: React.FC<Props> = props => {
   return (
     <div className="nickname-container">
       <div className="nickname-header">
-        <h3>Number of Users: <span className="accented-text">{props.users.length}</span></h3>
+        <h3>Number of Users: <span className="accented-text">{props.usernames.length}</span></h3>
       </div>
       <div className="nickname-table">
         {/* hardcoded first row for just master */}
         {/* <div className="name-holder first-field">Host</div> */}
-        {props.users.map(user => {
+        {props.usernames.map(username => {
           return (
-            <div className="name-holder" style={{ borderLeftColor: user.hexColor }} key={user.username}>
-              {user.username}
+            <div className="name-holder" style={{ borderLeftColor: usernameToHex(username) }} key={username}>
+              {username}
             </div>
           );
         })}

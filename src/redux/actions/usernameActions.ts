@@ -1,6 +1,4 @@
 import * as types from "./actionTypes";
-import { Room } from "../../components/common/objectTypes/room";
-import * as stubData from "../../apiConnection/stubData";
 
 // not used for now, might not be needed
 export function loadUsernamesSuccess(usernames: string[]) {

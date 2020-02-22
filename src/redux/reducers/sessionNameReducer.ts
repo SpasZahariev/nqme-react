@@ -1,5 +1,4 @@
 import * as types from "../actions/actionTypes";
-import { Room } from "../../components/common/objectTypes/room";
 import initialState from "./initialState";
 
 type Actions = { type: string; sessionName: string };

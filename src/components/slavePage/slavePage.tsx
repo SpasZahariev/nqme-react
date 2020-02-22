@@ -1,17 +1,14 @@
-import React, { Component, useState } from "react";
-import "./slavePage.scss";
+import { Song } from "components/common/objectTypes/song";
+import { Store } from "components/common/objectTypes/store";
+import React from "react";
+import { FlowerSpinner } from "react-epic-spinners";
+import { connect } from "react-redux";
 import "../common/nqmeNavBar/nqmeNavBar";
 import NqmeNavBar from "../common/nqmeNavBar/nqmeNavBar";
-import YouTube from "react-youtube";
-import UserListPresenter from "../common/userListPresenter/userListPresenter";
-import SongQueuePresenter from "../common/songQueuePresenter/songQueuePresenter";
 import SearchResultsContainer from "../common/searchResultsContainer/searchResultsContainer";
-import * as api from "../../apiConnection/stubData";
-import { Song } from "components/common/objectTypes/song";
-import { connect } from "react-redux";
-import { Store } from "components/common/objectTypes/store";
-import searchSongs from "../../apiConnection/searchSongs";
-import { FlowerSpinner } from "react-epic-spinners";
+import SongQueueContainer from "../common/songQueueContainer/songQueueContainer";
+import UserListPresenter from "../common/userListPresenter/userListPresenter";
+import "./slavePage.scss";
 
 interface Props {
   pin: string;
@@ -59,23 +56,7 @@ const SlavePage: React.FC<Props> = (props) => {
     );
   }
 
-  //function that hashes strings into hex color values
-  const usernameToHex = (username: string) => {
-    console.log(username);
-    let hash = 0;
-    for (let i = 0; i < username.length; i++) {
-      hash = username.charCodeAt(i) + ((hash << 5) - hash);
-    }
-    let colour = '#';
-    for (let i = 0; i < 3; i++) {
-      let value = (hash >> (i * 8)) & 0xFF;
-      colour += ('00' + value.toString(16)).substr(-2);
-    }
-    return colour;
-  }
-
   const searchResultsBlock = () => {
-    console.log("search Results");
     return (
       <div className="col-md-12 col-xl-5">
         <SearchResultsContainer />
@@ -84,35 +65,17 @@ const SlavePage: React.FC<Props> = (props) => {
   }
 
   const songQueueBlock = () => {
-    console.log("song queue block ", props.songs);
     return (
       <div className="col-sm-12 col-lg-6 col-xl-3">
-        <SongQueuePresenter
-          roomCode={props.pin}
-          queue={props.songs.map(song => {
-            return {
-              title: song.title,
-              likes: song.likes,
-              hexColor: usernameToHex(song.username)
-            }
-          })}
-        />
+        <SongQueueContainer />
       </div>
     );
   }
 
   const userListBlock = () => {
-    console.log("user list block");
     return (
       <div className="col-sm-12 col-lg-6 col-xl-3">
-        <UserListPresenter
-          users={props.usernames.map(username => {
-            return {
-              username,
-              hexColor: usernameToHex(username)
-            }
-          })}
-        />
+        <UserListPresenter usernames={props.usernames} />
       </div>
     );
   }

@@ -1,9 +1,9 @@
-import { createStore, applyMiddleware, compose } from "redux";
-import rootReducer from "./reducers/index";
+import { applyMiddleware, createStore } from "redux";
+import { composeWithDevTools } from "redux-devtools-extension";
 //warns us if we mutate state in the redux store
 import reduxImmutableStateInvariant from "redux-immutable-state-invariant";
-import { composeWithDevTools } from "redux-devtools-extension";
 import thunk from "redux-thunk";
+import rootReducer from "./reducers/index";
 
 export default function configureStore(initialState?: any) {
   return createStore(

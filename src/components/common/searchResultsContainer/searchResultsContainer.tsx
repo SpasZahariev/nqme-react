@@ -1,19 +1,18 @@
-import React, { useEffect, useState } from "react";
-import "./searchResultsContainer.scss";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSpotify, faYoutube } from "@fortawesome/free-brands-svg-icons";
 import { faMeteor } from "@fortawesome/free-solid-svg-icons";
-import { faYoutube, faSpotify } from "@fortawesome/free-brands-svg-icons";
-import { connect } from "react-redux";
-import { Store } from "../objectTypes/store";
-import { Song, Brand } from "../objectTypes/song";
-import { addSongToQueue } from "redux/actions/roomActions";
-import * as roomActions from "../../../redux/actions/roomActions";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import React from "react";
 import { withApollo } from "react-apollo";
+import { connect } from "react-redux";
+import * as roomActions from "../../../redux/actions/roomActions";
+import { Brand, Song } from "../objectTypes/song";
+import { Store } from "../objectTypes/store";
+import "./searchResultsContainer.scss";
 
 type Props = {
-  pin: String;
+  pin: string;
   searchResults: Song[];
-  addSongToQueue: (pin: String, song: Song) => void;
+  addSongToQueue: (pin: string, song: Song) => void;
   // {
   //   url: string;
   //   title: string;
@@ -75,7 +74,7 @@ const mapStateToProps = (state: Store) => {
 }
 
 const mapDispatchToProps = (dispatch: any, ownProps: any) => ({
-  addSongToQueue: (pin: String, song: Song) => dispatch(roomActions.addSongToQueue(ownProps.client, pin, song))
+  addSongToQueue: (pin: string, song: Song) => dispatch(roomActions.addSongToQueue(ownProps.client, pin, song))
 });
 
 // export default withApollo(connect(mapStateToProps, mapDispatchToProps)(LandingPage));

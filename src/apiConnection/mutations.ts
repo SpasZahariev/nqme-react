@@ -44,3 +44,13 @@ export const PUT_SONG = gql`
     }
   }
 `;
+
+export const LIKE_SONG = gql`
+  mutation($pin: String!, $title: String!) {
+    likeSong(pin: $pin, title: $title) {
+      songs {
+        url
+      }
+    }
+  }
+`;

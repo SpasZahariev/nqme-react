@@ -1,18 +1,16 @@
+import { ApolloProvider } from '@apollo/react-hooks';
+import { InMemoryCache, NormalizedCacheObject } from 'apollo-cache-inmemory';
+import { ApolloClient } from 'apollo-client';
+import { HttpLink } from 'apollo-link-http';
 import React from "react";
 import ReactDOM from "react-dom";
-import "./index.scss";
-import App from "./App";
-import "../node_modules/bootstrap/dist/css/bootstrap.css";
 import { Provider } from "react-redux";
 import { BrowserRouter } from "react-router-dom";
+import "../node_modules/bootstrap/dist/css/bootstrap.css";
+import App from "./App";
+import "./index.scss";
 import configureStore from "./redux/configureStore";
-import { ApolloClient } from 'apollo-client';
-import { InMemoryCache, NormalizedCacheObject } from 'apollo-cache-inmemory';
-import { HttpLink } from 'apollo-link-http';
-import { ApolloProvider } from '@apollo/react-hooks';
-import searchSongs from "./apiConnection/searchSongs"
 
-import gql from "graphql-tag";
 
 
 const cache = new InMemoryCache();

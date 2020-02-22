@@ -1,15 +1,11 @@
-import * as types from "./actionTypes";
-import { Room } from "../../components/common/objectTypes/room";
-import { Brand, Song } from "components/common/objectTypes/song";
-import * as stubData from "../../apiConnection/stubData";
-import * as usernameActions from "./usernameActions";
-import * as apiStatusActions from "./apiStatusActions";
-
-import { useApolloClient, useMutation } from "@apollo/react-hooks";
-import { useQuery } from "@apollo/react-hooks";
-import * as apiQueries from "../../apiConnection/queries";
+import { Song } from "components/common/objectTypes/song";
 import * as apiMutations from "../../apiConnection/mutations";
-import gql from "graphql-tag";
+import * as apiQueries from "../../apiConnection/queries";
+import { Room } from "../../components/common/objectTypes/room";
+import * as types from "./actionTypes";
+import * as apiStatusActions from "./apiStatusActions";
+import * as usernameActions from "./usernameActions";
+
 // import gql from "graphql-tag";
 
 // export function createRoomSuccess(room: Room) {
@@ -34,6 +30,10 @@ export function addSongOptimistic(song: Song) {
 
 export function clearSearchResults() {
   return { type: types.CLEAR_SEARCH_RESULTS };
+}
+
+export function likeSongOptimistic(title: string) {
+  return { type: types.LIKE_SONG_OPTIMISTIC, title };
 }
 
 export function createRoom(client: any) {
@@ -88,7 +88,7 @@ export function loadRoom(client: any, pinCode: string) {
   };
 }
 
-export function addSongToQueue(client: any, pin: String, song: Song) {
+export function addSongToQueue(client: any, pin: string, song: Song) {
   return function(dispatch: any) {
     dispatch(addSongOptimistic(song));
     dispatch(clearSearchResults());
@@ -96,6 +96,16 @@ export function addSongToQueue(client: any, pin: String, song: Song) {
     return client.mutate({
       mutation: apiMutations.PUT_SONG,
       variables: { pin, title, url, username, company }
+    });
+  };
+}
+
+export function likeSong(client: any, pin: string, title: string) {
+  return function(dispatch: any) {
+    dispatch(likeSongOptimistic(title));
+    return client.mutate({
+      mutation: apiMutations.LIKE_SONG,
+      variables: { pin, title }
     });
   };
 }

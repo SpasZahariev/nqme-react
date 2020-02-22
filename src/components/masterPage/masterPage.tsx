@@ -1,15 +1,14 @@
 import { Song } from "components/common/objectTypes/song";
 import { Store } from "components/common/objectTypes/store";
-import React, { useState } from "react";
+import React from "react";
 import { connect } from "react-redux";
 import YouTube from "react-youtube";
 import "../common/nqmeNavBar/nqmeNavBar";
 import NqmeNavBar from "../common/nqmeNavBar/nqmeNavBar";
 import SearchResultsContainer from "../common/searchResultsContainer/searchResultsContainer";
-import SongQueuePresenter from "../common/songQueuePresenter/songQueuePresenter";
+import SongQueueContainer from "../common/songQueueContainer/songQueueContainer";
 import UserListPresenter from "../common/userListPresenter/userListPresenter";
 import "./masterPage.scss";
-import searchSongs from "apiConnection/searchSongs";
 
 
 
@@ -82,20 +81,6 @@ const MasterPage: React.FC<Props> = (props) => {
     );
   }
 
-  //function that hashes strings into hex color values
-  const usernameToHex = (username: string) => {
-    let hash = 0;
-    for (var i = 0; i < username.length; i++) {
-      hash = username.charCodeAt(i) + ((hash << 5) - hash);
-    }
-    var colour = '#';
-    for (var i = 0; i < 3; i++) {
-      var value = (hash >> (i * 8)) & 0xFF;
-      colour += ('00' + value.toString(16)).substr(-2);
-    }
-    return colour;
-  }
-
   //TODO will need to pass the results from the function called by NavBar
   const searchResultsBlock = () => {
     return (
@@ -108,16 +93,7 @@ const MasterPage: React.FC<Props> = (props) => {
   const songQueueBlock = () => {
     return (
       <div className="col-sm-12 col-lg-6 col-xl-3">
-        <SongQueuePresenter
-          roomCode={props.pin}
-          queue={props.songs.map(song => {
-            return {
-              title: song.title,
-              likes: song.likes,
-              hexColor: usernameToHex(song.username)
-            }
-          })}
-        />
+        <SongQueueContainer />
       </div>
     );
   }
@@ -126,13 +102,7 @@ const MasterPage: React.FC<Props> = (props) => {
     return (
       <div className="col-sm-12 col-lg-6 col-xl-3">
         <UserListPresenter
-          users={props.usernames.map(username => {
-            return {
-              username,
-              hexColor: usernameToHex(username)
-            }
-          })}
-        />
+          usernames={props.usernames} />
       </div>
     );
   }

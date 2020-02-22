@@ -13,14 +13,14 @@
   background-color: $middle-black;
   display: inline-block;
 
-    h3 {
-      color: $almost-white;
-      margin-top: 5px;
-      font-size: 23px;
-      margin-bottom: 3px;
-      padding-left: 5px;
-      font-weight: 700;
-    }
+  h3 {
+    color: $almost-white;
+    margin-top: 5px;
+    font-size: 23px;
+    margin-bottom: 3px;
+    padding-left: 5px;
+    font-weight: 700;
+  }
 }
 
 .queue-table {
@@ -47,9 +47,11 @@
   display: inline-grid;
   grid-template-columns: auto 75px;
   grid-template-rows: auto;
+
+  border-left-style: inset;
 }
 
-.song-name p{
+.song-name p {
   text-align: left;
   word-wrap: break-word;
 }
