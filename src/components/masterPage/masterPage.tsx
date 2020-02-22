@@ -9,6 +9,9 @@ import SearchResultsContainer from "../common/searchResultsContainer/searchResul
 import SongQueueContainer from "../common/songQueueContainer/songQueueContainer";
 import UserListPresenter from "../common/userListPresenter/userListPresenter";
 import "./masterPage.scss";
+import extractVideoId from "components/common/utlilityFunctions/extractVideoId";
+import * as roomActions from "../../redux/actions/roomActions";
+import { withApollo } from "react-apollo";
 
 
 
@@ -17,18 +20,19 @@ interface Props {
   usernames: string[];
   songs: Song[];
   isLoading: boolean;
+  dequeueSong: (pin: string) => void;
 };
 
 const SMALL_SCREEN_WIDTH = 1220;
 
 const youtubeOptions = {
-  height: "500",
+  height: "50%",
   width: "100%",
 
   playerVars: {
     // https://developers.google.com/youtube/player_parameters
-    // autoplay: 1
-    // color: "white",
+    // autoplay: 1,
+    // color: "red",
     // iv_load_policy: 3,
     origin: "localhost"
   }
@@ -70,12 +74,10 @@ const MasterPage: React.FC<Props> = (props) => {
         )} */}
 
         <YouTube
-          // videoId={this.state.currentSong.url}
-          videoId="3kQXKJJ0nGc"
+          videoId={extractVideoId(props.songs[0].url)}
           opts={youtubeOptions}
-        // STOP THIS LINE FOR NOW
-        // onReady={event => event.target.playVideo()}
-        // onEnd=({this._onEnd})
+          onReady={event => event.target.playVideo()}
+          onEnd={() => props.dequeueSong(props.pin)}
         />
       </div>
     );
@@ -140,7 +142,8 @@ const MasterPage: React.FC<Props> = (props) => {
     <div className="main-container col-lg-12 col-xl-11">
       <NqmeNavBar />
       <div className="content-container">
-        <div>{renderPlayer()}</div>
+        {/* maybe I can put a gif or a cool picture on the display when there aren't any songs to play */}
+        {props.songs.length > 0 ? renderPlayer() : (<></>)}
         {arangeComponents()}
       </div>
     </div>
@@ -156,5 +159,11 @@ const mapStateToProps = (state: Store) => {
   }
 }
 
+// it is a function that returns functions
+const mapDispatchToProps = (dispatch: any, ownProps: any) => ({
+  dequeueSong: (pin: string) => dispatch(roomActions.dequeueSong(ownProps.client, pin))
+});
 
-export default connect(mapStateToProps)(MasterPage);
+
+
+export default withApollo(connect(mapStateToProps, mapDispatchToProps)(MasterPage));

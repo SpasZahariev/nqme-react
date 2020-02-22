@@ -30,19 +30,18 @@
 //   -webkit-filter: blur(8px);
 // }
 
-// #music-player {
-//   padding: 0px;
-// }
+#music-player {
+  padding: 0px;
+}
 
 .tables-container {
   // margin-top: 30px;
   justify-content: space-between;
   margin-left: 0px !important;
   margin-right: 0px !important;
-
 }
 
-  //style to all the child divs
+//style to all the child divs
 .tables-container > div {
   margin-top: 30px;
 }
