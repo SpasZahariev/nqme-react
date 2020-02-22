@@ -3,7 +3,7 @@ import "./nqmeNavBar.scss";
 import "../../../assets/styles/colors.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch, faCog } from "@fortawesome/free-solid-svg-icons";
-import { NavLink } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { Store } from "../objectTypes/store";
 import * as searchActions from "../../../redux/actions/searchActions"
@@ -40,7 +40,7 @@ const NqmeNavBar: React.FC<Props> = (props) => {
     <div className="container-fluid nav-container">
       <div className="nqme-row">
         {/* on navlink click - wipe the global state*/}
-        <NavLink to="/" activeClassName="nqme-nav-link">
+        <a href="/home" className="nqme-nav-link">
           <h4 id="logo-header">
             <span id="text-4-user">
               {/* prepend with NQME if it is the master page */}
@@ -48,7 +48,7 @@ const NqmeNavBar: React.FC<Props> = (props) => {
             </span>
             <span>{props.sessionName}</span>
           </h4>
-        </NavLink>
+        </a>
         <form className="col-10 col-sm-10 col-md-5 col-lg-7" onSubmit={handleSubmit}>
           <div className="input-group" id="search-div">
 
