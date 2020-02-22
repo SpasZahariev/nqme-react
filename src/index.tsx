@@ -25,27 +25,27 @@ const client: ApolloClient<NormalizedCacheObject> = new ApolloClient({
     link
 });
 
-searchSongs("two feet");
+// searchSongs("two feet");
 
 // ... above is the instantiation of the client object.
-client
-    .query({
-        query: gql`
-    query {
-        room(pin:"1111") {
-            pin
-            usernames
-            songs {
-                title
-                url
-                likes
-                company
-            }
-        }
-    }
-    `
-    })
-    .then(result => console.log(result));
+// client
+//     .query({
+//         query: gql`
+//     query {
+//         room(pin:"1111") {
+//             pin
+//             usernames
+//             songs {
+//                 title
+//                 url
+//                 likes
+//                 company
+//             }
+//         }
+//     }
+//     `
+//     })
+//     .then(result => console.log(result));
 
 
 const store = configureStore();

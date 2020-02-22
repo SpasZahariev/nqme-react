@@ -3,6 +3,7 @@ import { Room } from "../../components/common/objectTypes/room";
 import { Brand } from "components/common/objectTypes/song";
 import * as stubData from "../../apiConnection/stubData";
 import * as usernameActions from "./usernameActions";
+import * as apiStatusActions from "./apiStatusActions";
 
 import { useApolloClient, useMutation } from "@apollo/react-hooks";
 import { useQuery } from "@apollo/react-hooks";
@@ -29,8 +30,8 @@ export function loadRoomSuccess(room: Room) {
 
 export function createRoom(client: any) {
   // do some thunk stuff
-  //temp solution
   return function(dispatch: any) {
+    dispatch(apiStatusActions.beginApiCall());
     dispatch(usernameActions.setSessionName(HOST));
     //start api loading now
     return client
@@ -42,7 +43,10 @@ export function createRoom(client: any) {
         console.log(result);
         dispatch(loadRoomSuccess(result.data.putRoom.room));
       })
-      .catch((error: any) => console.log(error));
+      .catch((error: any) => {
+        dispatch(apiStatusActions.apiCallError());
+        throw error;
+      });
   };
 }
 
@@ -50,6 +54,7 @@ export function loadRoom(client: any, pinCode: string) {
   return function(dispatch: any) {
     // const client = useApolloClient();
 
+    dispatch(apiStatusActions.beginApiCall());
     // console.log(wrappedPin);
     return client
       .query({
@@ -68,7 +73,10 @@ export function loadRoom(client: any, pinCode: string) {
           )
         );
       })
-      .catch((error: any) => console.log(error));
+      .catch((error: any) => {
+        dispatch(apiStatusActions.apiCallError());
+        throw error;
+      });
   };
 }
 

@@ -39,6 +39,7 @@ const NqmeNavBar: React.FC<Props> = (props) => {
   return (
     <div className="container-fluid nav-container">
       <div className="nqme-row">
+        {/* on navlink click - wipe the global state*/}
         <NavLink to="/" activeClassName="nqme-nav-link">
           <h4 id="logo-header">
             <span id="text-4-user">
