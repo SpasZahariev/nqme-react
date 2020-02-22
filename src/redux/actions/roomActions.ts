@@ -1,6 +1,6 @@
 import * as types from "./actionTypes";
 import { Room } from "../../components/common/objectTypes/room";
-import { Brand } from "components/common/objectTypes/song";
+import { Brand, Song } from "components/common/objectTypes/song";
 import * as stubData from "../../apiConnection/stubData";
 import * as usernameActions from "./usernameActions";
 import * as apiStatusActions from "./apiStatusActions";
@@ -26,6 +26,14 @@ interface QueryResult {
 
 export function loadRoomSuccess(room: Room) {
   return { type: types.LOAD_ROOM_SUCCESS, room: room };
+}
+
+export function addSongOptimistic(song: Song) {
+  return { type: types.ADD_SONG_OPTIMISTIC, song: song };
+}
+
+export function clearSearchResults() {
+  return { type: types.CLEAR_SEARCH_RESULTS };
 }
 
 export function createRoom(client: any) {
@@ -66,17 +74,29 @@ export function loadRoom(client: any, pinCode: string) {
         console.log("here is my result", result);
         console.log(result.data.room);
         const room = result.data.room;
-        dispatch(loadRoomSuccess(room));
         dispatch(
           usernameActions.setSessionName(
             room.usernames[room.usernames.length - 1]
           )
         );
+        dispatch(loadRoomSuccess(room));
       })
       .catch((error: any) => {
         dispatch(apiStatusActions.apiCallError());
         throw error;
       });
+  };
+}
+
+export function addSongToQueue(client: any, pin: String, song: Song) {
+  return function(dispatch: any) {
+    dispatch(addSongOptimistic(song));
+    dispatch(clearSearchResults());
+    const { title, url, username, company } = song;
+    return client.mutate({
+      mutation: apiMutations.PUT_SONG,
+      variables: { pin, title, url, username, company }
+    });
   };
 }
 

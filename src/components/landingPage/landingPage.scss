@@ -104,8 +104,14 @@
 }
 
 .center-flower {
-  text-align: center;
-  margin: 0 auto;
+  // text-align: center;
+  // margin: 0 auto;
   // margin-top: 350px;
-  transform: translateY(160%);
+  // transform: translateY(160%);
+  position: absolute;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+
+  top: 50%;
+  left: 50%;
 }

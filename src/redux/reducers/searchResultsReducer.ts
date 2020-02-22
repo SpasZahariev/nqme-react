@@ -12,6 +12,8 @@ export default function searchResultsReducer(
   switch (action.type) {
     case types.SEARCH_SONGS_SUCCESS:
       return action.songs;
+    case types.CLEAR_SEARCH_RESULTS:
+      return [];
     default:
       return searchResultsState;
   }

@@ -10,7 +10,7 @@ import * as searchActions from "../../../redux/actions/searchActions"
 
 type Props = {
   sessionName: string;
-  onSearchSong: (word: string) => void;
+  onSearchSong: (word: string, sessionName: string) => void;
 };
 
 // type State = {
@@ -31,7 +31,7 @@ const NqmeNavBar: React.FC<Props> = (props) => {
   }
   const handleSubmit = (evt: React.FormEvent) => {
     evt.preventDefault();
-    props.onSearchSong(searchText);
+    props.onSearchSong(searchText, props.sessionName);
     setSearchText('');
   }
 

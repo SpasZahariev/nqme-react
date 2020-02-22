@@ -11,6 +11,7 @@ import { Song } from "components/common/objectTypes/song";
 import { connect } from "react-redux";
 import { Store } from "components/common/objectTypes/store";
 import searchSongs from "../../apiConnection/searchSongs";
+import { FlowerSpinner } from "react-epic-spinners";
 
 interface Props {
   pin: string;
@@ -60,13 +61,14 @@ const SlavePage: React.FC<Props> = (props) => {
 
   //function that hashes strings into hex color values
   const usernameToHex = (username: string) => {
+    console.log(username);
     let hash = 0;
-    for (var i = 0; i < username.length; i++) {
+    for (let i = 0; i < username.length; i++) {
       hash = username.charCodeAt(i) + ((hash << 5) - hash);
     }
-    var colour = '#';
-    for (var i = 0; i < 3; i++) {
-      var value = (hash >> (i * 8)) & 0xFF;
+    let colour = '#';
+    for (let i = 0; i < 3; i++) {
+      let value = (hash >> (i * 8)) & 0xFF;
       colour += ('00' + value.toString(16)).substr(-2);
     }
     return colour;
@@ -82,7 +84,7 @@ const SlavePage: React.FC<Props> = (props) => {
   }
 
   const songQueueBlock = () => {
-    console.log("song queue block");
+    console.log("song queue block ", props.songs);
     return (
       <div className="col-sm-12 col-lg-6 col-xl-3">
         <SongQueuePresenter
@@ -144,15 +146,19 @@ const SlavePage: React.FC<Props> = (props) => {
     );
   }
 
-  return (
-    <div className="main-container col-lg-12 col-xl-11">
-      <NqmeNavBar />
-      <div className="content-container">
-        <div>{renderPlayer()}</div>
-        {arangeComponents()}
+  return props.isLoading ? (<div>
+    <div className="darken-background" />
+    <FlowerSpinner color="#d1c7d3" size={220} className="center-flower" />
+  </div>
+  ) : (
+      <div className="main-container col-lg-12 col-xl-11">
+        <NqmeNavBar />
+        <div className="content-container">
+          <div>{renderPlayer()}</div>
+          {arangeComponents()}
+        </div>
       </div>
-    </div>
-  );
+    );
 }
 
 const mapStateToProps = (state: Store) => {

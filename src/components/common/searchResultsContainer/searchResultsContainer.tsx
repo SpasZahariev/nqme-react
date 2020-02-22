@@ -6,9 +6,14 @@ import { faYoutube, faSpotify } from "@fortawesome/free-brands-svg-icons";
 import { connect } from "react-redux";
 import { Store } from "../objectTypes/store";
 import { Song, Brand } from "../objectTypes/song";
+import { addSongToQueue } from "redux/actions/roomActions";
+import * as roomActions from "../../../redux/actions/roomActions";
+import { withApollo } from "react-apollo";
 
 type Props = {
+  pin: String;
   searchResults: Song[];
+  addSongToQueue: (pin: String, song: Song) => void;
   // {
   //   url: string;
   //   title: string;
@@ -51,7 +56,7 @@ const SearchResultsContainer: React.FC<Props> = props => {
                   {song.title}
                 </p>
               </div>
-              <button className="btn-primary btn-circle">
+              <button className="btn-primary btn-circle" onClick={() => props.addSongToQueue(props.pin, song)}>
                 <FontAwesomeIcon icon={faMeteor} color="#d1c7d3" size="2x" />
               </button>
             </div>
@@ -64,12 +69,14 @@ const SearchResultsContainer: React.FC<Props> = props => {
 
 const mapStateToProps = (state: Store) => {
   return {
+    pin: state.pin,
     searchResults: state.searchResults
   }
 }
 
-const mapDispatchToProps = {
-  // addSongToQueue: searchActions.searchForSongs
-}
+const mapDispatchToProps = (dispatch: any, ownProps: any) => ({
+  addSongToQueue: (pin: String, song: Song) => dispatch(roomActions.addSongToQueue(ownProps.client, pin, song))
+});
 
-export default connect(mapStateToProps, mapDispatchToProps)(SearchResultsContainer);
+// export default withApollo(connect(mapStateToProps, mapDispatchToProps)(LandingPage));
+export default withApollo(connect(mapStateToProps, mapDispatchToProps)(SearchResultsContainer));

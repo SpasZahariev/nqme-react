@@ -1,10 +1,10 @@
 import gql from "graphql-tag";
 
-export const LOGIN_USER = gql`
-  mutation login($email: String!) {
-    login(email: $email)
-  }
-`;
+// export const LOGIN_USER = gql`
+//   mutation login($email: String!) {
+//     login(email: $email)
+//   }
+// `;
 
 export const PUT_ROOM = gql`
   mutation {
@@ -18,6 +18,28 @@ export const PUT_ROOM = gql`
           likes
           company
         }
+      }
+    }
+  }
+`;
+
+export const PUT_SONG = gql`
+  mutation(
+    $pin: String!
+    $title: String!
+    $url: String!
+    $username: String!
+    $company: String!
+  ) {
+    putSong(
+      pin: $pin
+      title: $title
+      url: $url
+      username: $username
+      company: $company
+    ) {
+      songs {
+        url
       }
     }
   }
