@@ -33,7 +33,7 @@ const SongQueueContainer: React.FC<Props> = props => {
                   {song.title}
                 </p>
               </div>
-              <button className="btn-primary btn-beat" onClick={() => props.likeSong(props.pin, song.title)}>
+              <button className="btn-primary btn-beat shadow-none" onClick={() => props.likeSong(props.pin, song.title)}>
                 <span className="num-likes">
                   {song.likes}
                 </span>
