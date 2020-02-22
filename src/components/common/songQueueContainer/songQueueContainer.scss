@@ -75,3 +75,9 @@
   font-weight: 700;
   padding-right: 4px;
 }
+
+.btn:focus,
+.btn:active {
+  outline: none !important;
+  box-shadow: none;
+}

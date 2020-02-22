@@ -18,12 +18,15 @@ export default function songReducer(
     case types.ADD_SONG_OPTIMISTIC:
       return [...songsState, action.song];
     case types.LIKE_SONG_OPTIMISTIC:
-      return songsState.map(song => {
-        //note very cool -> using the spread operator I can update ONLY the likes propery!
-        return song.title === action.title
-          ? { ...song, likes: song.likes + 1 }
-          : song;
-      });
+      //sort playlist in descending like order
+      return songsState
+        .map(song => {
+          //note very cool -> using the spread operator I can update ONLY the likes propery!
+          return song.title === action.title
+            ? { ...song, likes: song.likes + 1 }
+            : song;
+        })
+        .sort((songA, songB) => songB.likes - songA.likes);
     default:
       return songsState;
   }
