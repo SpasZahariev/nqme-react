@@ -82,7 +82,7 @@ const MasterPage: React.FC<Props> = (props) => {
           videoId={extractVideoId(props.songs[0].url)}
           opts={youtubeOptions}
           onReady={event => event.target.playVideo()}
-          onEnd={() => { props.dequeueSong(props.pin) }
+          onEnd={() => props.dequeueSong(props.pin)}
         />
       </div>
     );
