@@ -10,12 +10,13 @@ import "../node_modules/bootstrap/dist/css/bootstrap.css";
 import App from "./App";
 import "./index.scss";
 import configureStore from "./redux/configureStore";
+import { LOCALHOST_GRAPHQL } from "config.json"
 
 
 
 const cache = new InMemoryCache();
 const link = new HttpLink({
-    uri: 'http://localhost:5000/graphql'
+    uri: LOCALHOST_GRAPHQL
 });
 
 const client: ApolloClient<NormalizedCacheObject> = new ApolloClient({

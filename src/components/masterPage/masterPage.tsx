@@ -1,6 +1,6 @@
 import { Song } from "components/common/objectTypes/song";
 import { Store } from "components/common/objectTypes/store";
-import React from "react";
+import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import YouTube from "react-youtube";
 import "../common/nqmeNavBar/nqmeNavBar";
@@ -12,16 +12,12 @@ import "./masterPage.scss";
 import extractVideoId from "components/common/utlilityFunctions/extractVideoId";
 import * as roomActions from "../../redux/actions/roomActions";
 import { withApollo } from "react-apollo";
+import io from "socket.io-client";
+import { LOCALHOST } from "../../config.json"
 
 
 
-interface Props {
-  pin: string;
-  usernames: string[];
-  songs: Song[];
-  isLoading: boolean;
-  dequeueSong: (pin: string) => void;
-};
+
 
 const SMALL_SCREEN_WIDTH = 1220;
 
@@ -43,7 +39,22 @@ const youtubeOptions = {
   }
 };
 
+interface Props {
+  pin: string;
+  usernames: string[];
+  songs: Song[];
+  isLoading: boolean;
+  dequeueSong: (pin: string) => void;
+};
+//used in the useEffect hook
+let socket;
+
 const MasterPage: React.FC<Props> = (props) => {
+
+  useEffect(() => {
+    socket = io(LOCALHOST);
+    console.log(socket)
+  }, []);
   // const [songResultsState, setSongResultsState] = useState<Song[]>([]);
 
   // const onSearchSong = (text: string) => {
