@@ -18,14 +18,14 @@ interface Props {
   isLoading: boolean;
 };
 
-const youtubeOptions = {
-  height: "500",
-  width: "100%",
+// const youtubeOptions = {
+//   height: "500",
+//   width: "100%",
 
-  playerVars: {
-    origin: "localhost"
-  }
-};
+//   playerVars: {
+//     origin: "localhost"
+//   }
+// };
 
 const SMALL_SCREEN_WIDTH = 1220;
 

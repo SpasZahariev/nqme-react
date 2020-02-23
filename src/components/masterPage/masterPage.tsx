@@ -25,16 +25,21 @@ interface Props {
 
 const SMALL_SCREEN_WIDTH = 1220;
 
+// const playerVars = {
+//   // autoplay: 1,
+//   // color: "red",
+//   origin: "localhost"
+// }
 const youtubeOptions = {
-  height: "50%",
+  height: "500",
   width: "100%",
 
   playerVars: {
-    // https://developers.google.com/youtube/player_parameters
-    // autoplay: 1,
-    // color: "red",
-    // iv_load_policy: 3,
-    origin: "localhost"
+    origin: "localhost",
+    iv_load_policy: 3 as 3,
+    autoplay: 1 as 1,
+    modestbranding: 1 as 1,
+    fs: 0 as 0
   }
 };
 
@@ -77,7 +82,7 @@ const MasterPage: React.FC<Props> = (props) => {
           videoId={extractVideoId(props.songs[0].url)}
           opts={youtubeOptions}
           onReady={event => event.target.playVideo()}
-          onEnd={() => props.dequeueSong(props.pin)}
+          onEnd={() => { props.dequeueSong(props.pin) }
         />
       </div>
     );
