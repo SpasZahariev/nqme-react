@@ -34,6 +34,12 @@
   padding: 0px;
 }
 
+// this site told me to do this https://css-tricks.com/aspect-ratio-boxes/
+.player-wrapper {
+  position: relative;
+  padding-top: 56.25%; // Player ratio is 100 / (1280 / 720)
+}
+
 .tables-container {
   // margin-top: 30px;
   justify-content: space-between;

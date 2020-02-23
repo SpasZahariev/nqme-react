@@ -60,7 +60,7 @@ const MasterPage: React.FC<Props> = (props) => {
   // the songs played part ensures that the player gets refreshed at the end of a song
   const renderPlayer = () => {
     return (
-      <div id="music-player">
+      <div id="music-player" className="player-wrapper">
         {/* {this.state.currentSong.type === "s" && spotifyApi.getAccessToken() && (
           <SpotifyPlayer
             spotifyToken={spotifyApi.getAccessToken()}
