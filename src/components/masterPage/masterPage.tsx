@@ -18,15 +18,17 @@ import jsonToPlaylist from "components/common/utlilityFunctions/jsonToPlayList";
 
 
 
-
+interface Props {
+  pin: string;
+  usernames: string[];
+  songs: Song[];
+  isLoading: boolean;
+  dequeueSong: (pin: string) => void;
+  setToLivePlaylist: (songs: Song[]) => void;
+};
 
 const SMALL_SCREEN_WIDTH = 1220;
 
-// const playerVars = {
-//   // autoplay: 1,
-//   // color: "red",
-//   origin: "localhost"
-// }
 const youtubeOptions = {
   height: "500",
   width: "100%",
@@ -40,14 +42,7 @@ const youtubeOptions = {
   }
 };
 
-interface Props {
-  pin: string;
-  usernames: string[];
-  songs: Song[];
-  isLoading: boolean;
-  dequeueSong: (pin: string) => void;
-  setToLivePlaylist: (songs: Song[]) => void;
-};
+
 //used in the useEffect hook
 let socket: SocketIOClient.Socket;
 

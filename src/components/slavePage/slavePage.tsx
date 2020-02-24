@@ -1,6 +1,6 @@
 import { Song } from "components/common/objectTypes/song";
 import { Store } from "components/common/objectTypes/store";
-import React from "react";
+import React, { useEffect } from "react";
 import { FlowerSpinner } from "react-epic-spinners";
 import { connect } from "react-redux";
 import "../common/nqmeNavBar/nqmeNavBar";
@@ -9,6 +9,11 @@ import SearchResultsContainer from "../common/searchResultsContainer/searchResul
 import SongQueueContainer from "../common/songQueueContainer/songQueueContainer";
 import UserListPresenter from "../common/userListPresenter/userListPresenter";
 import "./slavePage.scss";
+import jsonToPlaylist from "components/common/utlilityFunctions/jsonToPlayList";
+import * as roomActions from "../../redux/actions/roomActions"
+import { LOCALHOST } from "../../config.json"
+import io from "socket.io-client";
+
 
 interface Props {
   pin: string;
@@ -16,6 +21,7 @@ interface Props {
   songs: Song[];
   sessionName: string;
   isLoading: boolean;
+  setToLivePlaylist: (songs: Song[]) => void;
 };
 
 // const youtubeOptions = {
@@ -29,9 +35,32 @@ interface Props {
 
 const SMALL_SCREEN_WIDTH = 1220;
 
+let socket: SocketIOClient.Socket;
 
 // const SlavePage: React.FC<Props> = () => {
 const SlavePage: React.FC<Props> = (props) => {
+
+  useEffect(() => {
+    socket = io(LOCALHOST);
+    console.log(socket)
+
+
+    //called On component unmount hook
+    return () => {
+      socket.emit("disconnect");
+      // socket.off();
+    }
+  }, []);
+
+  const { songs, setToLivePlaylist } = props;
+  useEffect(() => {
+    socket.on("playlist_channel", (data: any) => {
+      console.log("we got something!");
+      console.log(JSON.parse(data));
+      setToLivePlaylist(jsonToPlaylist(JSON.parse(data)));
+    });
+  }, [songs, setToLivePlaylist]); //rerun this effect on rerenders only if props.songs has changed
+
 
   // const [songResultsState, setSongResultsState] = useState<Song[]>([]);
 
@@ -134,4 +163,8 @@ const mapStateToProps = (state: Store) => {
   }
 }
 
-export default connect(mapStateToProps)(SlavePage);
+const mapDispatchToProps = {
+  setToLivePlaylist: roomActions.setToLivePlaylist
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(SlavePage);
