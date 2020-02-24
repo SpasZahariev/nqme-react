@@ -4,6 +4,9 @@ import * as types from "./actionTypes";
 export function loadUsernamesSuccess(usernames: string[]) {
   return { type: types.LOAD_USERNAMES_SUCCESS, usernames: usernames };
 }
+export function setToLiveUsernames(usernames: string[]) {
+  return { type: types.SET_TO_LIVE_USERNAMES, usernames };
+}
 
 export function setSessionName(sessionName: string) {
   return { type: types.SET_SESSION_NAME, sessionName: sessionName };

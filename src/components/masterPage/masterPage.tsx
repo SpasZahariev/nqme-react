@@ -11,6 +11,7 @@ import UserListPresenter from "../common/userListPresenter/userListPresenter";
 import "./masterPage.scss";
 import extractVideoId from "components/common/utlilityFunctions/extractVideoId";
 import * as roomActions from "../../redux/actions/roomActions";
+import * as usernameActions from "../../redux/actions/usernameActions";
 import { withApollo } from "react-apollo";
 import io from "socket.io-client";
 import { LOCALHOST } from "../../config.json"
@@ -25,6 +26,7 @@ interface Props {
   isLoading: boolean;
   dequeueSong: (pin: string) => void;
   setToLivePlaylist: (songs: Song[]) => void;
+  setToLiveUsernames: (usernames: string[]) => void;
 };
 
 const SMALL_SCREEN_WIDTH = 1220;
@@ -60,7 +62,7 @@ const MasterPage: React.FC<Props> = (props) => {
     }
   }, []);
 
-  const { songs, setToLivePlaylist } = props;
+  const { songs, usernames, setToLivePlaylist, setToLiveUsernames } = props;
   useEffect(() => {
     socket.on("playlist_channel", (data: any) => {
       console.log("we got something!");
@@ -69,6 +71,13 @@ const MasterPage: React.FC<Props> = (props) => {
     });
   }, [songs, setToLivePlaylist]); //rerun this effect on rerenders only if props.songs has changed
 
+  useEffect(() => {
+    socket.on("usernames_channel", (data: any) => {
+      console.log("we got userNAMES");
+      console.log(data);
+      setToLiveUsernames(JSON.parse(data));
+    })
+  }, [usernames, setToLiveUsernames]);
 
   // const [songResultsState, setSongResultsState] = useState<Song[]>([]);
 
@@ -193,7 +202,8 @@ const mapStateToProps = (state: Store) => {
 // it is a function that returns functions
 const mapDispatchToProps = (dispatch: any, ownProps: any) => ({
   dequeueSong: (pin: string) => dispatch(roomActions.dequeueSong(ownProps.client, pin)),
-  setToLivePlaylist: (songs: Song[]) => dispatch(roomActions.setToLivePlaylist(songs))
+  setToLivePlaylist: (songs: Song[]) => dispatch(roomActions.setToLivePlaylist(songs)),
+  setToLiveUsernames: (usernames: string[]) => dispatch(usernameActions.setToLiveUsernames(usernames))
 });
 
 

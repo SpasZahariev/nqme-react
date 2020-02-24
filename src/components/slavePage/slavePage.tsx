@@ -10,8 +10,9 @@ import SongQueueContainer from "../common/songQueueContainer/songQueueContainer"
 import UserListPresenter from "../common/userListPresenter/userListPresenter";
 import "./slavePage.scss";
 import jsonToPlaylist from "components/common/utlilityFunctions/jsonToPlayList";
-import * as roomActions from "../../redux/actions/roomActions"
-import { LOCALHOST } from "../../config.json"
+import * as roomActions from "../../redux/actions/roomActions";
+import * as usernameActions from "../../redux/actions/usernameActions";
+import { LOCALHOST } from "../../config.json";
 import io from "socket.io-client";
 
 
@@ -22,6 +23,7 @@ interface Props {
   sessionName: string;
   isLoading: boolean;
   setToLivePlaylist: (songs: Song[]) => void;
+  setToLiveUsernames: (usernames: string[]) => void;
 };
 
 // const youtubeOptions = {
@@ -47,12 +49,13 @@ const SlavePage: React.FC<Props> = (props) => {
 
     //called On component unmount hook
     return () => {
+      // socket.emit("disconnect", { message: { pin: "10", username: "us" } });
       socket.emit("disconnect");
       // socket.off();
     }
   }, []);
 
-  const { songs, setToLivePlaylist } = props;
+  const { songs, usernames, setToLivePlaylist, setToLiveUsernames } = props;
   useEffect(() => {
     socket.on("playlist_channel", (data: any) => {
       console.log("we got something!");
@@ -61,6 +64,11 @@ const SlavePage: React.FC<Props> = (props) => {
     });
   }, [songs, setToLivePlaylist]); //rerun this effect on rerenders only if props.songs has changed
 
+  useEffect(() => {
+    socket.on("usernames_channel", (data: any) => {
+      setToLiveUsernames(JSON.parse(data));
+    })
+  }, [usernames, setToLiveUsernames]);
 
   // const [songResultsState, setSongResultsState] = useState<Song[]>([]);
 
@@ -164,7 +172,8 @@ const mapStateToProps = (state: Store) => {
 }
 
 const mapDispatchToProps = {
-  setToLivePlaylist: roomActions.setToLivePlaylist
+  setToLivePlaylist: roomActions.setToLivePlaylist,
+  setToLiveUsernames: usernameActions.setToLiveUsernames
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(SlavePage);
