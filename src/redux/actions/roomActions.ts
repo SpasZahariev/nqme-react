@@ -40,6 +40,10 @@ export function dequeueSongOptimistic() {
   return { type: types.DEQUEUE_SONG_OPTIMISTIC };
 }
 
+export function setToLivePlaylist(songs: Song[]) {
+  return { type: types.SET_TO_LIVE_PLAYLIST, songs };
+}
+
 export function createRoom(client: any) {
   // do some thunk stuff
   return function(dispatch: any) {

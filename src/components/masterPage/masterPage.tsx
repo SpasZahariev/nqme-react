@@ -14,6 +14,7 @@ import * as roomActions from "../../redux/actions/roomActions";
 import { withApollo } from "react-apollo";
 import io from "socket.io-client";
 import { LOCALHOST } from "../../config.json"
+import jsonToPlaylist from "components/common/utlilityFunctions/jsonToPlayList";
 
 
 
@@ -45,16 +46,35 @@ interface Props {
   songs: Song[];
   isLoading: boolean;
   dequeueSong: (pin: string) => void;
+  setToLivePlaylist: (songs: Song[]) => void;
 };
 //used in the useEffect hook
-let socket;
+let socket: SocketIOClient.Socket;
 
 const MasterPage: React.FC<Props> = (props) => {
 
   useEffect(() => {
     socket = io(LOCALHOST);
     console.log(socket)
+
+
+    //called On component unmount hook
+    return () => {
+      socket.emit("disconnect");
+      // socket.off();
+    }
   }, []);
+
+  const { songs, setToLivePlaylist } = props;
+  useEffect(() => {
+    socket.on("playlist_channel", (data: any) => {
+      console.log("we got something!");
+      console.log(JSON.parse(data));
+      setToLivePlaylist(jsonToPlaylist(JSON.parse(data)));
+    });
+  }, [songs, setToLivePlaylist]); //rerun this effect on rerenders only if props.songs has changed
+
+
   // const [songResultsState, setSongResultsState] = useState<Song[]>([]);
 
   // const onSearchSong = (text: string) => {
@@ -177,7 +197,8 @@ const mapStateToProps = (state: Store) => {
 
 // it is a function that returns functions
 const mapDispatchToProps = (dispatch: any, ownProps: any) => ({
-  dequeueSong: (pin: string) => dispatch(roomActions.dequeueSong(ownProps.client, pin))
+  dequeueSong: (pin: string) => dispatch(roomActions.dequeueSong(ownProps.client, pin)),
+  setToLivePlaylist: (songs: Song[]) => dispatch(roomActions.setToLivePlaylist(songs))
 });
 
 

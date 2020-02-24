@@ -7,7 +7,8 @@ type Actions =
   | { type: "LOAD_ROOM_SUCCESS"; room: Room }
   | { type: "ADD_SONG_OPTIMISTIC"; song: Song }
   | { type: "LIKE_SONG_OPTIMISTIC"; title: string }
-  | { type: "DEQUEUE_SONG_OPTIMISTIC" };
+  | { type: "DEQUEUE_SONG_OPTIMISTIC" }
+  | { type: "SET_TO_LIVE_PLAYLIST"; songs: Song[] };
 
 export default function songReducer(
   songsState: Song[] = initialState.songs,
@@ -30,6 +31,8 @@ export default function songReducer(
         .sort((songA, songB) => songB.likes - songA.likes);
     case types.DEQUEUE_SONG_OPTIMISTIC:
       return songsState.slice(1);
+    case types.SET_TO_LIVE_PLAYLIST:
+      return action.songs;
     default:
       return songsState;
   }
