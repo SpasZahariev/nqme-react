@@ -39,7 +39,7 @@ const NqmeNavBar: React.FC<Props> = (props) => {
     <div className="container-fluid nav-container">
       <div className="nqme-row">
         {/* on navlink click - wipe the global state*/}
-        <a href="/home" className="nqme-nav-link">
+        <a href="/" className="nqme-nav-link">
           <h4 id="logo-header">
             <span id="text-4-user">
               {/* prepend with NQME if it is the master page */}

@@ -22,7 +22,6 @@ const App: React.FC<Props> = (props) => {
       <SpaceBackground />
       <Switch>
         <Route exact path="/" component={LandingPage} />
-        <Route exact path="/home" component={LandingPage} />
         <Route path="/room/:id" component={() => props.sessionName === HOST ? <MasterPage /> : <SlavePage />} />
         <Route component={Error} />
       </Switch>
