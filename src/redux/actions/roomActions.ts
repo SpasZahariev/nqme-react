@@ -44,6 +44,10 @@ export function setToLivePlaylist(songs: Song[]) {
   return { type: types.SET_TO_LIVE_PLAYLIST, songs };
 }
 
+export function setCurrentlyPlaying(song: Song) {
+  return { type: types.SET_CURRENTLY_PLAYING, song };
+}
+
 export function createRoom(client: any) {
   // do some thunk stuff
   return function(dispatch: any) {

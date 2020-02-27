@@ -12,7 +12,7 @@ import { Song } from "../objectTypes/song";
 type Props = {
   pin: string;
   songs: Song[];
-  currentlyPlaying: string;
+  currentlyPlaying: Song;
   likeSong: (pin: string, title: string) => void;
 };
 
@@ -28,7 +28,7 @@ const SongQueueContainer: React.FC<Props> = props => {
       <div className="queue-table">
         {props.currentlyPlaying ? <div className="current-song song-name">
           <p>
-            {props.currentlyPlaying}
+            {props.currentlyPlaying.title}
           </p>
         </div> : <> </>
         }

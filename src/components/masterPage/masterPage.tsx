@@ -113,6 +113,7 @@ const MasterPage: React.FC<Props> = (props) => {
           />
         )} */}
 
+        {/* todo change dequeue song to remove specific song and setCurrent song as first song also when songs is empty load into current song */}
         <YouTube
           videoId={extractVideoId(props.songs[0].url)}
           opts={youtubeOptions}
