@@ -112,7 +112,9 @@ const SlavePage: React.FC<Props> = (props) => {
   const userListBlock = () => {
     return (
       <div className="col-sm-12 col-lg-6 col-xl-3">
-        <UserListPresenter usernames={props.usernames} />
+        <UserListPresenter
+          usernames={props.usernames}
+          sessionName={props.sessionName} />
       </div>
     );
   }

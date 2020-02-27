@@ -4,6 +4,7 @@ import { usernameToHex } from "../../common/utlilityFunctions/usernameToHex"
 
 type Props = {
   usernames: string[];
+  sessionName: string;
 };
 
 const UserListPresenter: React.FC<Props> = props => {
@@ -18,7 +19,7 @@ const UserListPresenter: React.FC<Props> = props => {
         {props.usernames.map(username => {
           return (
             <div className="name-holder" style={{ borderLeftColor: usernameToHex(username) }} key={username}>
-              {username}
+              {username === props.sessionName ? <span className="accented-session-name">{username}</span> : <span>{username}</span>}
             </div>
           );
         })}

@@ -12,6 +12,7 @@ import { Song } from "../objectTypes/song";
 type Props = {
   pin: string;
   songs: Song[];
+  currentlyPlaying: string;
   likeSong: (pin: string, title: string) => void;
 };
 
@@ -25,6 +26,12 @@ const SongQueueContainer: React.FC<Props> = props => {
         </span>
       </div>
       <div className="queue-table">
+        {props.currentlyPlaying ? <div className="current-song song-name">
+          <p>
+            {props.currentlyPlaying}
+          </p>
+        </div> : <> </>
+        }
         {props.songs.map(song => {
           return (
             <div className="queue-holder" style={{ borderLeftColor: usernameToHex(song.username) }} key={song.title} >
@@ -50,7 +57,8 @@ const SongQueueContainer: React.FC<Props> = props => {
 const mapStateToProps = (state: Store) => {
   return {
     pin: state.pin,
-    songs: state.songs
+    songs: state.songs,
+    currentlyPlaying: state.currentlyPlaying
   }
 }
 

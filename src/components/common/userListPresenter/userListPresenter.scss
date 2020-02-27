@@ -53,6 +53,11 @@
   font-weight: 700;
 }
 
+.accented-session-name {
+  color: $lightest-accent;
+  font-weight: 900;
+}
 .accented-text {
   color: $light-accent;
+  // color: $lightest-accent;
 }

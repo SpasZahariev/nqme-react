@@ -144,7 +144,8 @@ const MasterPage: React.FC<Props> = (props) => {
     return (
       <div className="col-sm-12 col-lg-6 col-xl-3">
         <UserListPresenter
-          usernames={props.usernames} />
+          usernames={props.usernames}
+          sessionName={"Host"} />
       </div>
     );
   }
