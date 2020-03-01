@@ -48,6 +48,10 @@ export function setCurrentlyPlaying(song: Song) {
   return { type: types.SET_CURRENTLY_PLAYING, song };
 }
 
+export function removeSongOptimistic(title: string) {
+  return { type: types.REMOVE_SONG_OPTIMISTIC, title };
+}
+
 export function createRoom(client: any) {
   // do some thunk stuff
   return function(dispatch: any) {
@@ -128,6 +132,16 @@ export function dequeueSong(client: any, pin: string) {
     return client.mutate({
       mutation: apiMutations.DEQUEUE_SONG,
       variables: { pin }
+    });
+  };
+}
+
+export function removeFromQueue(client: any, pin: string, title: string) {
+  return function(dispatch: any) {
+    dispatch(removeSongOptimistic(title));
+    return client.mutate({
+      mutation: apiMutations.REMOVE_SONG,
+      variables: { pin, title }
     });
   };
 }

@@ -7,6 +7,7 @@ type Actions =
   | { type: "LOAD_ROOM_SUCCESS"; room: Room }
   | { type: "ADD_SONG_OPTIMISTIC"; song: Song }
   | { type: "LIKE_SONG_OPTIMISTIC"; title: string }
+  | { type: "REMOVE_SONG_OPTIMISTIC"; title: string }
   | { type: "DEQUEUE_SONG_OPTIMISTIC" }
   | { type: "SET_TO_LIVE_PLAYLIST"; songs: Song[] };
 
@@ -33,6 +34,8 @@ export default function songReducer(
       return songsState.slice(1);
     case types.SET_TO_LIVE_PLAYLIST:
       return action.songs;
+    case types.REMOVE_SONG_OPTIMISTIC:
+      return songsState.filter(song => song.title !== action.title);
     default:
       return songsState;
   }

@@ -64,3 +64,12 @@ export const DEQUEUE_SONG = gql`
     }
   }
 `;
+export const REMOVE_SONG = gql`
+  mutation($pin: String!, $title: String!) {
+    removeSong(pin: $pin, title: $title) {
+      songs {
+        url
+      }
+    }
+  }
+`;

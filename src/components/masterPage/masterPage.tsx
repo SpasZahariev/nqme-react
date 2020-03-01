@@ -24,9 +24,11 @@ interface Props {
   usernames: string[];
   songs: Song[];
   isLoading: boolean;
-  dequeueSong: (pin: string) => void;
+  currentlyPlaying: Song;
+  removeFromQueue: (pin: string, title: string) => void;
   setToLivePlaylist: (songs: Song[]) => void;
   setToLiveUsernames: (usernames: string[]) => void;
+  setCurrentlyPlaying: (song: Song) => void;
 };
 
 const SMALL_SCREEN_WIDTH = 1220;
@@ -115,13 +117,23 @@ const MasterPage: React.FC<Props> = (props) => {
 
         {/* todo change dequeue song to remove specific song and setCurrent song as first song also when songs is empty load into current song */}
         <YouTube
-          videoId={extractVideoId(props.songs[0].url)}
+          videoId={extractVideoId(props.currentlyPlaying.url)}
           opts={youtubeOptions}
           onReady={event => event.target.playVideo()}
-          onEnd={() => props.dequeueSong(props.pin)}
+          onEnd={() => handleSongEnded()}
         />
       </div>
     );
+  }
+
+  const handleSongEnded = () => {
+    // props.dequeueSong(props.pin);
+    props.removeFromQueue(props.pin, props.currentlyPlaying.title);
+
+    //logic to play the next song in the queue
+    if (props.songs.length > 0) {
+      props.setCurrentlyPlaying(props.songs[0]);
+    }
   }
 
   //TODO will need to pass the results from the function called by NavBar
@@ -203,7 +215,8 @@ const mapStateToProps = (state: Store) => {
 
 // it is a function that returns functions
 const mapDispatchToProps = (dispatch: any, ownProps: any) => ({
-  dequeueSong: (pin: string) => dispatch(roomActions.dequeueSong(ownProps.client, pin)),
+  removeFromQueue: (pin: string, title: string) => dispatch(roomActions.removeFromQueue(ownProps.client, pin, title)),
+  setCurrentlyPlaying: (song: Song) => dispatch(roomActions.setCurrentlyPlaying(song)),
   setToLivePlaylist: (songs: Song[]) => dispatch(roomActions.setToLivePlaylist(songs)),
   setToLiveUsernames: (usernames: string[]) => dispatch(usernameActions.setToLiveUsernames(usernames))
 });

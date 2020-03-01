@@ -32,23 +32,25 @@ const SongQueueContainer: React.FC<Props> = props => {
           </p>
         </div> : <> </>
         }
-        {props.songs.map(song => {
-          return (
-            <div className="queue-holder" style={{ borderLeftColor: usernameToHex(song.username) }} key={song.title} >
-              <div className="song-name">
-                <p>
-                  {song.title}
-                </p>
+        {props.songs
+          .filter(song => song.title !== props.currentlyPlaying.title)
+          .map(song => {
+            return (
+              <div className="queue-holder" style={{ borderLeftColor: usernameToHex(song.username) }} key={song.title} >
+                <div className="song-name">
+                  <p>
+                    {song.title}
+                  </p>
+                </div>
+                <button className="btn-primary btn-beat shadow-none" onClick={() => props.likeSong(props.pin, song.title)}>
+                  <span className="num-likes">
+                    {song.likes}
+                  </span>
+                  <FontAwesomeIcon icon={faHeartbeat} color="#d1c7d3" size="lg" />
+                </button>
               </div>
-              <button className="btn-primary btn-beat shadow-none" onClick={() => props.likeSong(props.pin, song.title)}>
-                <span className="num-likes">
-                  {song.likes}
-                </span>
-                <FontAwesomeIcon icon={faHeartbeat} color="#d1c7d3" size="lg" />
-              </button>
-            </div>
-          );
-        })}
+            );
+          })}
       </div>
     </div>
   );

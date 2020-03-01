@@ -1,5 +1,7 @@
 import { faSpotify, faYoutube } from "@fortawesome/free-brands-svg-icons";
-import { faMeteor } from "@fortawesome/free-solid-svg-icons";
+// import { faMeteor } from "@fortawesome/free-solid-svg-icons";
+// import { faPlusSquare } from "@fortawesome/free-solid-svg-icons";
+import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
 import { withApollo } from "react-apollo";
@@ -12,7 +14,9 @@ import "./searchResultsContainer.scss";
 type Props = {
   pin: string;
   searchResults: Song[];
+  songs: Song[];
   addSongToQueue: (pin: string, song: Song) => void;
+  setCurrentlyPlaying: (song: Song) => void;
   // {
   //   url: string;
   //   title: string;
@@ -31,11 +35,17 @@ const SearchResultsContainer: React.FC<Props> = props => {
   //   console.log("updated son info: ", songInfo);
   //   console.log("updated son info: ", textArray);
 
+  const handleAddSong = (song: Song) => {
+    if (props.songs.length === 0) {
+      props.setCurrentlyPlaying(song);
+    }
+    props.addSongToQueue(props.pin, song);
+  }
   // }, [props.searchResults])
   //break this up
   //make a useEffect call
   //if no songs display a text area with fun facts library
-  return props.searchResults.length === 0 ? (<></>) : (
+  return props.searchResults.length === 0 ? (<>Thanks for visiting my website! Use the search at the top of the page to get some tracks here</>) : (
     <div className="search-result-container">
       <div className="search-result-container-header">
         <span>
@@ -55,8 +65,8 @@ const SearchResultsContainer: React.FC<Props> = props => {
                   {song.title}
                 </p>
               </div>
-              <button className="btn-primary btn-circle" onClick={() => props.addSongToQueue(props.pin, song)}>
-                <FontAwesomeIcon icon={faMeteor} color="#d1c7d3" size="2x" />
+              <button className="btn-primary btn-circle" onClick={() => handleAddSong(song)}>
+                <FontAwesomeIcon icon={faPlus} color="#d1c7d3" size="2x" />
               </button>
             </div>
           );
@@ -69,12 +79,14 @@ const SearchResultsContainer: React.FC<Props> = props => {
 const mapStateToProps = (state: Store) => {
   return {
     pin: state.pin,
-    searchResults: state.searchResults
+    searchResults: state.searchResults,
+    songs: state.songs
   }
 }
 
 const mapDispatchToProps = (dispatch: any, ownProps: any) => ({
-  addSongToQueue: (pin: string, song: Song) => dispatch(roomActions.addSongToQueue(ownProps.client, pin, song))
+  addSongToQueue: (pin: string, song: Song) => dispatch(roomActions.addSongToQueue(ownProps.client, pin, song)),
+  setCurrentlyPlaying: (song: Song) => dispatch(roomActions.setCurrentlyPlaying(song))
 });
 
 // export default withApollo(connect(mapStateToProps, mapDispatchToProps)(LandingPage));
