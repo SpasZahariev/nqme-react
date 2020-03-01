@@ -4,6 +4,6 @@ export default {
   songs: [],
   sessionName: "(=^-^=)",
   searchResults: [],
-  currentlyPlaying: {},
+  currentlyPlaying: null,
   apiCallsInProgress: 0
 };

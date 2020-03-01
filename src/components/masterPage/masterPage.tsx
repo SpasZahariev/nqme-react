@@ -24,11 +24,11 @@ interface Props {
   usernames: string[];
   songs: Song[];
   isLoading: boolean;
-  currentlyPlaying: Song;
+  currentlyPlaying: string;
   removeFromQueue: (pin: string, title: string) => void;
   setToLivePlaylist: (songs: Song[]) => void;
   setToLiveUsernames: (usernames: string[]) => void;
-  setCurrentlyPlaying: (song: Song) => void;
+  setCurrentlyPlaying: (song: string) => void;
 };
 
 const SMALL_SCREEN_WIDTH = 1220;
@@ -117,7 +117,7 @@ const MasterPage: React.FC<Props> = (props) => {
 
         {/* todo change dequeue song to remove specific song and setCurrent song as first song also when songs is empty load into current song */}
         <YouTube
-          videoId={extractVideoId(props.currentlyPlaying.url)}
+          videoId={extractVideoId(getCurrentlyPlayingUrl(props.currentlyPlaying))}
           opts={youtubeOptions}
           onReady={event => event.target.playVideo()}
           onEnd={() => handleSongEnded()}
@@ -126,14 +126,19 @@ const MasterPage: React.FC<Props> = (props) => {
     );
   }
 
-  const handleSongEnded = () => {
-    // props.dequeueSong(props.pin);
-    props.removeFromQueue(props.pin, props.currentlyPlaying.title);
+  const getCurrentlyPlayingUrl = (currentlyPlaying: string) => {
+    // ! is for telling th compiler that I am positive it will never return null
+    console.log(props.songs);
+    return props.songs.find(song => song.title === currentlyPlaying)!.url;
+  }
 
+  const handleSongEnded = () => {
     //logic to play the next song in the queue
-    if (props.songs.length > 0) {
-      props.setCurrentlyPlaying(props.songs[0]);
-    }
+    let newSong = props.songs.find(song => song.title !== props.currentlyPlaying);
+    props.setCurrentlyPlaying(newSong ? newSong.title : "");
+
+    // props.dequeueSong(props.pin);
+    props.removeFromQueue(props.pin, props.currentlyPlaying);
   }
 
   //TODO will need to pass the results from the function called by NavBar
@@ -197,7 +202,7 @@ const MasterPage: React.FC<Props> = (props) => {
       <NqmeNavBar />
       <div className="content-container">
         {/* maybe I can put a gif or a cool picture on the display when there aren't any songs to play */}
-        {props.songs.length > 0 ? renderPlayer() : (<></>)}
+        {props.songs.length > 0 && props.currentlyPlaying !== "" ? renderPlayer() : (<></>)}
         {arangeComponents()}
       </div>
     </div>
@@ -209,6 +214,7 @@ const mapStateToProps = (state: Store) => {
     pin: state.pin,
     usernames: state.usernames,
     songs: state.songs,
+    currentlyPlaying: state.currentlyPlaying,
     isLoading: state.apiCallsInProgress > 0
   }
 }
@@ -216,7 +222,7 @@ const mapStateToProps = (state: Store) => {
 // it is a function that returns functions
 const mapDispatchToProps = (dispatch: any, ownProps: any) => ({
   removeFromQueue: (pin: string, title: string) => dispatch(roomActions.removeFromQueue(ownProps.client, pin, title)),
-  setCurrentlyPlaying: (song: Song) => dispatch(roomActions.setCurrentlyPlaying(song)),
+  setCurrentlyPlaying: (title: string) => dispatch(roomActions.setCurrentlyPlaying(title)),
   setToLivePlaylist: (songs: Song[]) => dispatch(roomActions.setToLivePlaylist(songs)),
   setToLiveUsernames: (usernames: string[]) => dispatch(usernameActions.setToLiveUsernames(usernames))
 });

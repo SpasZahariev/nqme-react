@@ -6,6 +6,6 @@ export type Store = {
   songs: Song[];
   sessionName: string;
   searchResults: Song[];
-  currentlyPlaying: Song;
+  currentlyPlaying: string;
   apiCallsInProgress: number;
 };

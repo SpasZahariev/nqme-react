@@ -16,7 +16,7 @@ type Props = {
   searchResults: Song[];
   songs: Song[];
   addSongToQueue: (pin: string, song: Song) => void;
-  setCurrentlyPlaying: (song: Song) => void;
+  setCurrentlyPlaying: (song: string) => void;
   // {
   //   url: string;
   //   title: string;
@@ -37,7 +37,7 @@ const SearchResultsContainer: React.FC<Props> = props => {
 
   const handleAddSong = (song: Song) => {
     if (props.songs.length === 0) {
-      props.setCurrentlyPlaying(song);
+      props.setCurrentlyPlaying(song.title);
     }
     props.addSongToQueue(props.pin, song);
   }
@@ -45,35 +45,44 @@ const SearchResultsContainer: React.FC<Props> = props => {
   //break this up
   //make a useEffect call
   //if no songs display a text area with fun facts library
-  return props.searchResults.length === 0 ? (<>Thanks for visiting my website! Use the search at the top of the page to get some tracks here</>) : (
+  return props.searchResults.length === 0 ? (
     <div className="search-result-container">
       <div className="search-result-container-header">
         <span>
-          <h3>Search Results</h3>
+          <h3>Thanks for visiting my website!</h3>
           {/* <h5>Meteor songs into the queue</h5> */}
         </span>
       </div>
-      <div className="search-result-table">
-        {props.searchResults.map(song => {
-          return (
-            <div className="search-result-holder" key={song.url}>
-              {song.company === Brand.YOUTUBE ? (<FontAwesomeIcon icon={faYoutube} className="corporation-icon" color="#ff0000" size="2x" />
-              ) : (<FontAwesomeIcon icon={faSpotify} className="corporation-icon" color="#84bd00" size="2x" />
-                )}
-              <div className="song-name">
-                <p>
-                  {song.title}
-                </p>
-              </div>
-              <button className="btn-primary btn-circle" onClick={() => handleAddSong(song)}>
-                <FontAwesomeIcon icon={faPlus} color="#d1c7d3" size="2x" />
-              </button>
-            </div>
-          );
-        })}
-      </div>
     </div>
-  );
+  ) : (
+      <div className="search-result-container">
+        <div className="search-result-container-header">
+          <span>
+            <h3>Search Results</h3>
+            {/* <h5>Meteor songs into the queue</h5> */}
+          </span>
+        </div>
+        <div className="search-result-table">
+          {props.searchResults.map(song => {
+            return (
+              <div className="search-result-holder" key={song.url}>
+                {song.company === Brand.YOUTUBE ? (<FontAwesomeIcon icon={faYoutube} className="corporation-icon" color="#ff0000" size="2x" />
+                ) : (<FontAwesomeIcon icon={faSpotify} className="corporation-icon" color="#84bd00" size="2x" />
+                  )}
+                <div className="song-name">
+                  <p>
+                    {song.title}
+                  </p>
+                </div>
+                <button className="btn-primary btn-circle" onClick={() => handleAddSong(song)}>
+                  <FontAwesomeIcon icon={faPlus} color="#d1c7d3" size="2x" />
+                </button>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    );
 };
 
 const mapStateToProps = (state: Store) => {
@@ -86,7 +95,7 @@ const mapStateToProps = (state: Store) => {
 
 const mapDispatchToProps = (dispatch: any, ownProps: any) => ({
   addSongToQueue: (pin: string, song: Song) => dispatch(roomActions.addSongToQueue(ownProps.client, pin, song)),
-  setCurrentlyPlaying: (song: Song) => dispatch(roomActions.setCurrentlyPlaying(song))
+  setCurrentlyPlaying: (title: string) => dispatch(roomActions.setCurrentlyPlaying(title))
 });
 
 // export default withApollo(connect(mapStateToProps, mapDispatchToProps)(LandingPage));

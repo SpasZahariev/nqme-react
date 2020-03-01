@@ -44,8 +44,8 @@ export function setToLivePlaylist(songs: Song[]) {
   return { type: types.SET_TO_LIVE_PLAYLIST, songs };
 }
 
-export function setCurrentlyPlaying(song: Song) {
-  return { type: types.SET_CURRENTLY_PLAYING, song };
+export function setCurrentlyPlaying(title: string) {
+  return { type: types.SET_CURRENTLY_PLAYING, currentlyPlaying: title };
 }
 
 export function removeSongOptimistic(title: string) {
