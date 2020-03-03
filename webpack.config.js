@@ -4,6 +4,9 @@ const isDevelopment = true;
 
 // const webpack = require("webpack");
 module.exports = {
+  optimization: {
+    minimize: true
+  },
   entry: {
     "my-lib": "./src/index.tsx",
     "my-lib.min": "./src/index.tsx"
