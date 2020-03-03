@@ -1,5 +1,5 @@
-import { Song } from "components/common/objectTypes/song";
-import { Store } from "components/common/objectTypes/store";
+import { Song } from "../common/objectTypes/song";
+import { Store } from "../common/objectTypes/store";
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import YouTube from "react-youtube";
@@ -9,13 +9,13 @@ import SearchResultsContainer from "../common/searchResultsContainer/searchResul
 import SongQueueContainer from "../common/songQueueContainer/songQueueContainer";
 import UserListPresenter from "../common/userListPresenter/userListPresenter";
 import "./masterPage.scss";
-import extractVideoId from "components/common/utlilityFunctions/extractVideoId";
 import * as roomActions from "../../redux/actions/roomActions";
 import * as usernameActions from "../../redux/actions/usernameActions";
 import { withApollo } from "react-apollo";
 import io from "socket.io-client";
 import { LOCALHOST } from "../../config.json"
-import jsonToPlaylist from "components/common/utlilityFunctions/jsonToPlayList";
+import jsonToPlaylist from "../common/utlilityFunctions/jsonToPlayList";
+import extractVideoId from "../common/utlilityFunctions/extractVideoId";
 
 
 

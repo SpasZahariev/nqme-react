@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
 import * as roomActions from "../../redux/actions/roomActions";
 import "./landingPage.scss";
-import { Store } from "components/common/objectTypes/store";
+import { Store } from "../common/objectTypes/store";
 import { withApollo } from "react-apollo";
 
 

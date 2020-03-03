@@ -2,12 +2,12 @@ import React from "react";
 import { connect } from "react-redux";
 import { Route, Switch } from "react-router-dom";
 import "./App.scss";
-import SpaceBackground from "./components/common/background/spaceBackground";
-import Error from "./components/common/errorPage/error";
-import LandingPage from "./components/landingPage/landingPage";
-import MasterPage from "./components/masterPage/masterPage";
-import SlavePage from "./components/slavePage/slavePage";
-import { Store } from "components/common/objectTypes/store";
+import SpaceBackground from "./common/background/spaceBackground";
+import Error from "./common/errorPage/error";
+import LandingPage from "./landingPage/landingPage";
+import MasterPage from "./masterPage/masterPage";
+import SlavePage from "./slavePage/slavePage";
+import { Store } from "../components/common/objectTypes/store";
 
 
 interface Props {

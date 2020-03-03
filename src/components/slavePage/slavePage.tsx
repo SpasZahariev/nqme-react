@@ -1,5 +1,5 @@
-import { Song } from "components/common/objectTypes/song";
-import { Store } from "components/common/objectTypes/store";
+import { Song } from "../common/objectTypes/song";
+import { Store } from "../common/objectTypes/store";
 import React, { useEffect } from "react";
 import { FlowerSpinner } from "react-epic-spinners";
 import { connect } from "react-redux";
@@ -9,7 +9,7 @@ import SearchResultsContainer from "../common/searchResultsContainer/searchResul
 import SongQueueContainer from "../common/songQueueContainer/songQueueContainer";
 import UserListPresenter from "../common/userListPresenter/userListPresenter";
 import "./slavePage.scss";
-import jsonToPlaylist from "components/common/utlilityFunctions/jsonToPlayList";
+import jsonToPlaylist from "../common/utlilityFunctions/jsonToPlayList";
 import * as roomActions from "../../redux/actions/roomActions";
 import * as usernameActions from "../../redux/actions/usernameActions";
 import { LOCALHOST } from "../../config.json";

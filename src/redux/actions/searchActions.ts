@@ -1,6 +1,6 @@
 import searchSongs from "../../apiConnection/searchSongs";
 import * as types from "./actionTypes";
-import { Song } from "components/common/objectTypes/song";
+import { Song } from "../../components/common/objectTypes/song";
 import { beginApiCall, apiCallError } from "./apiStatusActions";
 
 export function searchSongsSuccess(songs: Song[]) {

@@ -1,7 +1,7 @@
 import * as types from "../actions/actionTypes";
 import { Room } from "../../components/common/objectTypes/room";
 import initialState from "./initialState";
-import { Song } from "components/common/objectTypes/song";
+import { Song } from "../../components/common/objectTypes/song";
 
 type Actions =
   | { type: "LOAD_ROOM_SUCCESS"; room: Room }

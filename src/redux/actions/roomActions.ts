@@ -1,4 +1,4 @@
-import { Song } from "components/common/objectTypes/song";
+import { Song } from "../../components/common/objectTypes/song";
 import * as apiMutations from "../../apiConnection/mutations";
 import * as apiQueries from "../../apiConnection/queries";
 import { Room } from "../../components/common/objectTypes/room";

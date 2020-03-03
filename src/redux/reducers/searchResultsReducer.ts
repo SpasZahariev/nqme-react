@@ -1,4 +1,4 @@
-import { Song } from "components/common/objectTypes/song";
+import { Song } from "../../components/common/objectTypes/song";
 import * as types from "../actions/actionTypes";
 import initialState from "./initialState";
 

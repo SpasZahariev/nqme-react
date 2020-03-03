@@ -1,5 +1,5 @@
-import { Brand, Song } from "components/common/objectTypes/song";
-import { Room } from "components/common/objectTypes/room";
+import { Brand, Song } from "../components/common/objectTypes/song";
+import { Room } from "../components/common/objectTypes/room";
 
 //temporary
 export const stubSongs: Song[] = [
