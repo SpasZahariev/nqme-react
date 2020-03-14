@@ -40,7 +40,14 @@ const SongQueueContainer: React.FC<Props> = props => {
           <p>
             {props.currentlyPlaying}
           </p>
-        </div> : <> </>
+        </div> : (
+            <div className="tutorial-holder" >
+              <span>
+                This is the where the live <span className="almost-white-text">Room</span> <span className="accent-text">Queue</span> lives.
+                <span className="accent-text"> Like</span> your favorite songs so they can be played faster!
+              </span>
+            </div>
+          )
         }
         {props.songs
           .filter(song => song.title !== props.currentlyPlaying)

@@ -99,3 +99,26 @@
   outline: none !important;
   box-shadow: none !important;
 }
+
+.tutorial-holder {
+  padding-left: 10px;
+  padding-right: 3px;
+  margin-top: 2px;
+  margin-bottom: 2px;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  border-radius: 5px 5px 5px 5px;
+  font-size: 16px;
+  background-color: $lighter-black;
+
+  color: $dark-white;
+
+  .almost-white-text {
+    color: $almost-white;
+    font-weight: 600;
+  }
+  .accent-text {
+    color: $light-accent;
+    font-weight: 600;
+  }
+}

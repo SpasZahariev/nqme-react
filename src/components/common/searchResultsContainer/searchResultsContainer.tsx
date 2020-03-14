@@ -53,6 +53,13 @@ const SearchResultsContainer: React.FC<Props> = props => {
           {/* <h5>Meteor songs into the queue</h5> */}
         </span>
       </div>
+      <div className="tutorial-holder" >
+        <span>
+          Your search results will display here. Pick one and it will be added to the
+          <span className="almost-white-text"> Room</span> <span className="accent-text">Queue </span>
+          playlist.
+        </span>
+      </div>
     </div>
   ) : (
       <div className="search-result-container">
