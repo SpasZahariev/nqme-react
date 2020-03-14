@@ -51,6 +51,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
+    "start-dev": "webpack-dev-server --config webpack.config.js --port 3000",
     "build-webpack": "webpack --config webpack.config.js",
     "mode-prod": "webpack --mode production"
   },

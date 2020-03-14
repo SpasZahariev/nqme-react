@@ -7,10 +7,7 @@ module.exports = {
   optimization: {
     minimize: true
   },
-  entry: {
-    "my-lib": "./src/index.tsx",
-    "my-lib.min": "./src/index.tsx"
-  },
+  entry: "./src/index.tsx",
   output: {
     path: path.resolve(__dirname, "_bundles"),
     filename: "[name].js",

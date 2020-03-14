@@ -6,6 +6,7 @@ import songReducer from "./songReducer";
 import apiStatusReducer from "./apiStatusReducer";
 import searchResultsReducer from "./searchResultsReducer";
 import currentlyPlayingReducer from "./currentlyPlayingReducer";
+import likedTitlesReducer from "./likedTitlesReducer";
 
 const rootReducer = combineReducers({
   pin: pinReducer,
@@ -14,6 +15,7 @@ const rootReducer = combineReducers({
   sessionName: sessionNameReducer,
   searchResults: searchResultsReducer,
   currentlyPlaying: currentlyPlayingReducer,
+  likedTitles: likedTitlesReducer,
   apiCallsInProgress: apiStatusReducer
 });
 

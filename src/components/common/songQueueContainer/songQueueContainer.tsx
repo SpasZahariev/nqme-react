@@ -13,10 +13,20 @@ type Props = {
   pin: string;
   songs: Song[];
   currentlyPlaying: string;
+  likedTitles: string[];
   likeSong: (pin: string, title: string) => void;
 };
 
 const SongQueueContainer: React.FC<Props> = props => {
+
+  const handleLike = (title: string) => {
+    // enforce one like per song (have some mercy on the websockets)
+    if (!props.likedTitles.includes(title)) {
+      props.likeSong(props.pin, title);
+    }
+  }
+
+
   return (
     <div className="queue-container">
       <div className="queue-container-header">
@@ -42,7 +52,7 @@ const SongQueueContainer: React.FC<Props> = props => {
                     {song.title}
                   </p>
                 </div>
-                <button className="btn-primary btn-beat shadow-none" onClick={() => props.likeSong(props.pin, song.title)}>
+                <button className="btn-primary btn-beat shadow-none" onClick={() => handleLike(song.title)}>
                   <span className="num-likes">
                     {song.likes}
                   </span>
@@ -60,7 +70,8 @@ const mapStateToProps = (state: Store) => {
   return {
     pin: state.pin,
     songs: state.songs,
-    currentlyPlaying: state.currentlyPlaying
+    currentlyPlaying: state.currentlyPlaying,
+    likedTitles: state.likedTitles
   }
 }
 

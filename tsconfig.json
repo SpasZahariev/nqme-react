@@ -12,8 +12,8 @@
     "isolatedModules": true,
     "noEmit": true,
     "removeComments": true,
-    "jsx": "react",
-    "module": "ES2015",
+    "jsx": "preserve",
+    "module": "esnext",
     "lib": [
       "dom",
       "es2015"
