@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+    <title>NQME</title>
+
+    <style>
+      @import url("https://fonts.googleapis.com/css?family=Barlow&display=swap");
+    </style>
+    <style>
+      @import url("https://fonts.googleapis.com/css?family=Open+Sans&display=swap");
+    </style>
+    <style>
+      .error-box {
+        margin: 0;
+        width: 100%;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        -ms-transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%);
+        text-align: center;
+      }
+
+      .error-box > h1 {
+        font-family: "Barlow", "Trebuchet MS", "Lucida Sans Unicode",
+          "Lucida Grande", "Lucida Sans", Arial, sans-serif;
+        color: #de99e4;
+        font-weight: 300;
+      }
+
+      .display-3 {
+        font-size: 4.5rem;
+        font-weight: 300;
+        line-height: 1.2;
+        margin-bottom: 10px;
+      }
+
+      .display-5 {
+        font-size: 1.75rem;
+        margin-bottom: 0.5rem;
+        font-weight: 500;
+        line-height: 1.2;
+        font-family: "Open Sans", serif;
+        -webkit-font-smoothing: antialiased;
+        color: #fefff1;
+      }
+
+      .image-bg-elem {
+        height: 100%;
+        left: 0;
+        object-fit: cover;
+        position: absolute;
+        top: 0;
+        width: 100%;
+        filter: brightness(50%);
+      }
+    </style>
+  </head>
+  <body>
+    <img
+      src="https://picsum.photos/1080/1920?grayscale"
+      alt="woah-look-space"
+      class="image-bg-elem"
+    />
+    <div class="error-box">
+      <h1 class="display-3">NQME 404</h1>
+      <h3 class="display-5">Oh no, you know what this means :(</h3>
+    </div>
+  </body>
+</html>
