@@ -1,8 +1,6 @@
-### `npm start`
+# NQME - Shared Music Playlist
 
-# NQME frontend source code
-
-<img src="./puzzle-solver-demo.gif">
+<img src="./nqme-homepage.png">
 
 ## Links
 - Live application: [NQME](http://nqme.co.uk)
@@ -12,7 +10,7 @@
 
 
 ## Description
-- Web Application where multiple users can create a room, add music from Youtube and have it play on the room host's device. 
+- Responsive Web Application where multiple users can create a room, add music from Youtube and have it play on the room host's device. 
 - Users can add likes to queued up songs.
 - The Playlist is sorted and updated in real time based on the songs with the most user likes.
 - Users can create their own room or join an existing one by entering a 4 digit code.
@@ -36,14 +34,14 @@
 
 1. In the backend directory, run `docker build --tag nqme-backend .`
 2. Now you should have a built docker image. Start it with `docker run --publish 5000:5000 nqme-backend`
-3. You should have the backend running on localhost:5000
+3. You should have the backend running on **localhost:5000**
 4. Go to the frontend directory and run `npm install`
 5. Finally, run `npm start`
 
 ## Pictures fromo application
 
-<img src="./tile-swap-puzzle.jpg">
-<img src="./borad-with-obstacles.png">
-<img src="./general-example.png">
-<img src="./big-board.png">
+<img src="./room-with-songs.png">
+<img src="./mobile-view.png">
+<img src="./many-users.png">
+<img src="./empty-room.png">
 
