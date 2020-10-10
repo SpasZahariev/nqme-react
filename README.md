@@ -34,14 +34,13 @@
 
 ## Setup project locally
 
-1. In the backend directory, run commands in a terminal:
-```
-javac PuzzleBoard.java
+1. In the backend directory, run `docker build --tag nqme-backend .`
+2. Now you should have a built docker image. Start it with `docker run --publish 5000:5000 nqme-backend`
+3. You should have the backend running on localhost:5000
+4. Go to the frontend directory and run `npm install`
+5. Finally, run `npm start`
 
-java PuzzleBoard
-```
-
-## Original Puzzle And Pictures of the app
+## Pictures fromo application
 
 <img src="./tile-swap-puzzle.jpg">
 <img src="./borad-with-obstacles.png">
