@@ -11,7 +11,7 @@
 - React frontend repository: [Frontend Source Code](https://github.com/SpasZahariev/nqme-react)
 
 
-## Desccription
+## Description
 - Web Application where multiple users can create a room, add music from Youtube and have it play on the room host's device. 
 - Users can add likes to queued up songs.
 - The Playlist is sorted and updated in real time based on the songs with the most user likes.
