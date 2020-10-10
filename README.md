@@ -1,44 +1,50 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-
-## Available Scripts
-
-In the project directory, you can run:
-
 ### `npm start`
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+# NQME frontend source code
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+<img src="./puzzle-solver-demo.gif">
 
-### `npm test`
+## Links
+- Live application: [NQME](http://nqme.co.uk)
+- Backend API hosted on Heroku Dyno: [NQME GraphQL API](https://nqme-graphql.herokuapp.com/graphql?query=query%7B%0A%20%20rooms%20%7B%0A%20%20%20%20pin%0A%20%20%20%20usernames%0A%20%20%20%20songs%20%7B%0A%20%20%20%20%20%20title%0A%20%20%20%20%20%20url%0A%20%20%20%20%20%20likes%0A%20%20%20%20%20%20username%0A%20%20%20%20%20%20company%0A%20%20%20%20%7D%0A%20%20%7D%0A%7D)
+- Python backend repository: [Backend Source Code](https://github.com/SpasZahariev/graphql-flask-server)
+- React frontend repository: [Frontend Source Code](https://github.com/SpasZahariev/nqme-react)
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `npm run build`
+## Desccription
+- Web Application where multiple users can create a room, add music from Youtube and have it play on the room host's device. 
+- Users can add likes to queued up songs.
+- The Playlist is sorted and updated in real time based on the songs with the most user likes.
+- Users can create their own room or join an existing one by entering a 4 digit code.
 
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Technologies used
+- React
+- Typescript
+- GraphQL - providing data to users from the backend
+- Socket IO - two way communication with clients
+- Python 3
+- Flask - to make python webserver
+- Grpahene - Python Library for making GraphQL APIs
+- Docker - backend is hosted in a container
+- Heroku - hosts backend
+- AWS S3 - hosts frontend
+- AWS Cloudfront
+- SSL certificates
 
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Setup project locally
 
-### `npm run eject`
+1. In the backend directory, run commands in a terminal:
+```
+javac PuzzleBoard.java
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+java PuzzleBoard
+```
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Original Puzzle And Pictures of the app
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+<img src="./tile-swap-puzzle.jpg">
+<img src="./borad-with-obstacles.png">
+<img src="./general-example.png">
+<img src="./big-board.png">
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
