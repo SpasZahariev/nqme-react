@@ -8,7 +8,6 @@
 - Python backend repository: [Backend Source Code](https://github.com/SpasZahariev/graphql-flask-server)
 - React frontend repository: [Frontend Source Code](https://github.com/SpasZahariev/nqme-react)
 
-
 ## Description
 - Responsive Web Application where multiple users can create a room, add music from Youtube and have it play on the room host's device. 
 - Users can add likes to queued up songs.
@@ -38,10 +37,14 @@
 4. Go to the frontend directory and run `npm install`
 5. Finally, run `npm start`
 
+
 ## Pictures fromo application
 
 <img src="./room-with-songs.png">
 <img src="./mobile-view.png">
 <img src="./many-users.png">
 <img src="./empty-room.png">
+
+## Credits: Shout-out to my friends for the initial idea
+### Ivo, Atanas, Šarūnas, Bogdan, Octavian, and last but not least Alex!
 
