@@ -21,7 +21,7 @@
     "apollo-client": "^2.6.8",
     "apollo-link-http": "^1.5.16",
     "awesome-typescript-loader": "^5.2.1",
-    "axios": "^0.18.0",
+    "axios": "^0.21.1",
     "bootstrap": "^4.4.1",
     "graphql": "^14.6.0",
     "graphql-tag": "^2.10.3",
@@ -44,7 +44,7 @@
     "ts-loader": "^6.2.1",
     "typescript": "3.4.5",
     "yarn": "^1.22.0",
-    "youtube-search": "^1.1.4"
+    "youtube-search": "^1.1.5"
   },
   "scripts": {
     "start": "react-scripts start",
