@@ -22,7 +22,7 @@
     "apollo-link-http": "^1.5.16",
     "awesome-typescript-loader": "^5.2.1",
     "axios": "^0.18.0",
-    "bootstrap": "^4.4.1",
+    "bootstrap": "^5.0.0",
     "graphql": "^14.6.0",
     "graphql-tag": "^2.10.3",
     "html-webpack-plugin": "^3.2.0",
